@@ -1,0 +1,17 @@
+{
+    "@metadata": {
+        "authors": [
+            "Pierre Boutet"
+        ]
+    },
+	"userspageslinks-desc": "Extension pour l'ajout de bouton de de lien entre utilisateur et une page",
+	"userspageslinks-star": "Favoris",
+	"userspageslinks-member": "Rejoindre",
+	"userspageslinks-ididit": "Je l'ai fait !",
+	"userspageslinks-unstar": "Retirer des favoris",
+	"userspageslinks-unmember": "Quitter",
+	"userspageslinks-unididit": "Pas fait",
+	"userspageslinks-star-countlabel": "{{PLURAL:$1|Favori|Favoris}}",
+	"userspageslinks-member-countlabel": "{{PLURAL:$1|Membre|Membres}}",
+	"userspageslinks-ididit-countlabel": "{{PLURAL:$1|Maker|Makers}}"
+}
