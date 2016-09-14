@@ -2,20 +2,27 @@
 	
 
 	function linkAdded( page, type) {
-		$(".addUsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").hide();
-		$(".rmUsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").show();
+		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").removeClass('addAction').addClass('rmAction');
 	};
 	function linkRemoved(page, type) {
-		$(".addUsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").show();
-		$(".rmUsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").hide();
+		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").addClass('addAction').removeClass('rmAction');
 	};
+	
+	
+	function displayModal() {
+		$( "#connectionRequiredModal" ).modal();
+	}
+	
 
-
-
-	$('.addUsersPagesLinksButton').click(function() {
+	function addUsersPagesLinks(button) {
 		
-		var page = $(this).attr('data-page');
-		var type = $(this).attr('data-linkstype');
+		if (typeof wgUserId == 'undefined') {
+			displayModal();
+			return;
+		}
+		
+		var page = $(button).attr('data-page');
+		var type = $(button).attr('data-linkstype');
 		
 		// fonction to do second request to execute follow action
 		function ajaxPageslinkQuery(jsondata) {
@@ -40,14 +47,17 @@
 		    dataType: 'json',
 		    success: ajaxPageslinkQuery
 		});
-	});
-
-
-	$('.rmUsersPagesLinksButton').click(function() {
-
+	};
+	
+	function rmUsersPagesLinks(button) {
 		
-		var page = $(this).attr('data-page');
-		var type = $(this).attr('data-linkstype');
+		if (typeof wgUserId == 'undefined') {
+			displayModal();
+			return;
+		}
+
+		var page = $(button).attr('data-page');
+		var type = $(button).attr('data-linkstype');
 		
 		// fonction to do second request to execute follow action
 		function ajaxPagesLinksQuery(jsondata) {
@@ -72,5 +82,15 @@
 		    dataType: 'json',
 		    success: ajaxPagesLinksQuery
 		});
+	};
+
+	$('.UsersPagesLinksButton').click(function() {
+		if ($(this).hasClass('addAction')) {
+			addUsersPagesLinks(this);
+		} else {
+			rmUsersPagesLinks(this);
+		}
 	});
+
+
 })();

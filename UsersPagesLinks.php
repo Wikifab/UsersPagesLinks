@@ -34,6 +34,9 @@ $wgAutoloadClasses['UsersPagesLinks\\Buttons'] = __DIR__ . "/includes/Buttons.ph
 
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'UsersPagesLinks\\UsersPagesLinks::onLoadExtensionSchemaUpdates';
 $wgHooks['ParserFirstCallInit'][] = "UsersPagesLinks\\Buttons::onParserFirstCallInit";
+$wgHooks['SkinTemplateNavigation'][] = "UsersPagesLinks\\Buttons::onSkinTemplateNavigation";
+$wgHooks['BeforePageDisplay'][] = "UsersPagesLinks\\Buttons::onBeforePageDisplay";
+
 
 $wgExtensionCredits['specialpage'][] = array(
 		'path' => __FILE__,

@@ -4,9 +4,77 @@ namespace UsersPagesLinks;
 
 class Buttons  {
 
-	public static function onParserFirstCallInit( $parser ) {
+	public static function onParserFirstCallInit($parser ) {
 		$parser->setFunctionHook( 'usersPagesLinksButton', 'UsersPagesLinks\\Buttons::parserButton' );
+
 		return true;
+	}
+
+
+	public static function onBeforePageDisplay( $out ) {
+		$out->addModules( 'ext.userspageslinks.js' );
+		$out->addHTML(self::getConnectionRequiredModal($out));
+	}
+
+	public static function onSkinTemplateNavigation( &$page, &$content_navigation ) {
+		global $wgUser;
+
+		$pagesLinksActives = UsersPagesLinksCore::getInstance()->getUserPageLinks($wgUser, $page->getTitle());
+		$pagesLinksCounters= UsersPagesLinksCore::getInstance()->getPageCounters($page->getTitle());
+
+		$content_navigation['NetworksLinks'] = [];
+
+		// filter link to display according to the namespace
+		// TODO : filtre dynamiques
+		if ($page->getTitle()->getNamespace() == NS_GROUP) {
+			unset($pagesLinksCounters['ididit']);
+			unset($pagesLinksCounters['star']);
+		} else {
+			unset($pagesLinksCounters['member']);
+		}
+
+		foreach ($pagesLinksCounters as $type => $count) {
+			$content_navigation['NetworksLinks'][$type] = [
+					'type' => $type,
+					'count' => $count,
+					'redundant' => true,
+					'active' => in_array($type, $pagesLinksActives),
+					'activebis' => isset($pagesLinksActives[$type]),
+					'pageUri' => $page->getTitle()->getPrefixedDBkey()
+			];
+		}
+
+		return true;
+	}
+
+
+	public static function getConnectionRequiredModal($out) {
+
+		$loginTitle = \SpecialPage::getSafeTitleFor( 'Userlogin' );
+		$page = $out->getTitle();
+		$urlaction = 'returnto=' . $page->getPrefixedDBkey();
+		$loginUrl = $loginTitle->getLocalURL( $urlaction );
+		$createAccountUrl = $loginTitle->getLocalURL( $urlaction . '&type=signup' );
+
+		$ret = '
+				<div class="modal fade" id="connectionRequiredModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">'.wfMessage('userlogin').'</h4>
+				</div>
+				<div class="modal-body">
+				'.wfMessage('userspageslinks-connectionmodal-content').'
+				</div>
+				<div class="modal-footer">
+				<a href="'.$loginUrl.'"><button type="button" class="btn btn-default">'.wfMessage('gotaccountlink').'</button></a>
+				<a href="'.$createAccountUrl.'"><button type="button" class="btn btn-primary">'.wfMessage('nologinlink').'</button></a>
+				</div>
+				</div>
+				</div>
+				</div>';
+		return $ret;
 	}
 
 
@@ -23,28 +91,44 @@ class Buttons  {
 		}
 
 		$pagesLinksActives = UsersPagesLinksCore::getInstance()->getUserPageLinks($input->getUser(), $input->getTitle());
+		$pagesLinksCounters= UsersPagesLinksCore::getInstance()->getPageCounters($input->getTitle());
 
 		if (UsersPagesLinksCore::getInstance()->hasLink($input->getUser(), $input->getTitle(), $type)){
-			$addClass='pagelinkhidden';
-			$removeClass='pagelinkactive';
+			$addClass='rmAction';
 		} else {
-			$addClass='pagelinkactive';
-			$removeClass='pagelinkhidden';
+			$addClass='addAction';
 		}
 
+		$counter = isset($pagesLinksCounters[$type]) ? $pagesLinksCounters[$type] : 0;
 
 		$doLabel = wfMessage('userspageslinks-' . $type);
 		$undoLabel = wfMessage('userspageslinks-un' . $type);
 
-		$button = '<a class="addUsersPagesLinksButton '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
+		switch($type) {
+			case 'star':
+				$faClass ='fa fa-heart';
+				break;
+			case 'member':
+				$faClass ='fa fa-group';
+				break;
+			case 'ididit':
+				$faClass ='fa fa-hand-peace-o';
+				break;
+			default:
+				$faClass ='fa fa-eye';
+				break;
+		}
+
+		$button = '<a class="UsersPagesLinksButton '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
 		$button .= '<button>';
-		$button .= $doLabel;
+		$button .= '<span class=" doActionLabel"><i class="'.$faClass.'"></i> '.$doLabel.'</span>';
+		$button .= '<span class=" undoActionLabel"><i class="'.$faClass.'"></i>  '.$undoLabel.'</span>';
 		$button .= '</button>';
 		$button .= '</a>';
 
-		$button .= '<a class="rmUsersPagesLinksButton '.$removeClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
+		$button .= '<a class="UsersPagesLinksButtonCounter '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
 		$button .= '<button>';
-		$button .= $undoLabel;
+		$button .= $counter;
 		$button .= '</button>';
 		$button .= '</a>';
 
@@ -52,10 +136,6 @@ class Buttons  {
 		return array( $button, 'noparse' => true, 'isHTML' => true );
 	}
 
-
-	public static function onBeforePageDisplay( $out ) {
-		$out->addModules( 'ext.userspageslinks.js' );
-	}
 
 
 	/**

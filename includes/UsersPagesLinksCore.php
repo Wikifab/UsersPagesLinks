@@ -61,6 +61,7 @@ class UsersPagesLinksCore  {
 	}
 
 	public function getUserCounters($user) {
+		global $wgUsersPagesLinksTypes;
 
 		$dbr = wfGetDB( DB_MASTER );
 
@@ -86,6 +87,10 @@ class UsersPagesLinksCore  {
 				]
 		);
 		$results = [];
+		foreach ($wgUsersPagesLinksTypes as $type) {
+			$results[$type] = 0;
+		}
+
 		if ( $res->numRows() > 0 ) {
 			foreach ( $res as $row ) {
 				$results[$row->upl_type] = $row->count ;
@@ -96,6 +101,7 @@ class UsersPagesLinksCore  {
 	}
 
 	public function getPageCounters(\Title $page) {
+		global $wgUsersPagesLinksTypes;
 
 		$dbr = wfGetDB( DB_MASTER );
 
@@ -116,6 +122,9 @@ class UsersPagesLinksCore  {
 				]
 		);
 		$results = [];
+		foreach ($wgUsersPagesLinksTypes as $type) {
+			$results[$type] = 0;
+		}
 		if ( $res->numRows() > 0 ) {
 			foreach ( $res as $row ) {
 				$results[$row->upl_type] = $row->count ;

@@ -90,9 +90,9 @@ class ApiUsersPagesLinks extends \ApiBase {
 		$core = new UsersPagesLinksCore();
 
 		if ($action == 'remove'){
-			$result = $core->addLink( $user, $page, $type );
-		} else {
 			$result = $core->removeLink( $user, $page, $type );
+		} else {
+			$result = $core->addLink( $user, $page, $type );
 		}
 
 		$r=[];

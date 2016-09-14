@@ -1,6 +1,68 @@
-.addUsersPagesLinksButton.pagelinkhidden {
+.UsersPagesLinksButton.addAction .undoActionLabel {
 	display:none;
 }
-.rmUsersPagesLinksButton.pagelinkhidden {
+.UsersPagesLinksButton.rmAction .doActionLabel {
 	display:none;
+}
+
+.PageNetworkLinks {
+	float:right;
+}
+
+a.UsersPagesLinksButton button.doActionLabel, a.UsersPagesLinksButton button.undoActionLabel {
+    color: #000;
+    padding: 3px 10px;
+    margin-left: 5px;
+    line-height: 1.5em;
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(#fcfcfc, #eee);
+    background-image: linear-gradient(#fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+a.UsersPagesLinksButtonCounter button {
+    padding: 3px 10px;
+	font-weight: bold;
+    line-height: 1.5em;
+    margin-top:-1px;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+	border-left: 0px;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-moz-border-radius-bottomright: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+a.UsersPagesLinksButton button.undoActionLabel {
+	color: #fff;
+    background-color: #444;
+    background-image: linear-gradient(#999, #777);
+    border: 1px solid #666;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+a.UsersPagesLinksButton button:hover {
+	background-color: #ddd;
+	background-image: -webkit-linear-gradient(#eee, #ddd);
+	background-image: linear-gradient(#eee, #ddd);
+	border: 1px solid #ccc;
+}
+
+a.UsersPagesLinksButton button.undoActionLabel:hover {
+	color: #000;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+
+.UsersPagesLinksButton .doActionLabel .fa, .UsersPagesLinksButton .undoActionLabel .fa {
+	margin-right:2px;
 }

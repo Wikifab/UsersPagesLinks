@@ -13,5 +13,7 @@
 	"userspageslinks-unididit": "Pas fait",
 	"userspageslinks-star-countlabel": "{{PLURAL:$1|Favori|Favoris}}",
 	"userspageslinks-member-countlabel": "{{PLURAL:$1|Membre|Membres}}",
-	"userspageslinks-ididit-countlabel": "{{PLURAL:$1|Maker|Makers}}"
+	"userspageslinks-ididit-countlabel": "{{PLURAL:$1|Maker|Makers}}",
+	"userspageslinks-tab-favorites": "Favoris",
+	"userspageslinks-connectionmodal-content": "Vous n'êtes pas encore inscrit ? Inscrivez vous pour profiter du meilleur de Wikifab !"
 }
