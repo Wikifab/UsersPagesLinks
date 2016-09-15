@@ -16,7 +16,7 @@
 
 	function addUsersPagesLinks(button) {
 		
-		if (typeof wgUserId == 'undefined') {
+		if (! mw.config.get('wgUserId')) {
 			displayModal();
 			return;
 		}
