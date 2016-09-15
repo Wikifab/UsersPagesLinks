@@ -17,23 +17,28 @@ class Buttons  {
 	}
 
 	public static function onSkinTemplateNavigation( &$page, &$content_navigation ) {
-		global $wgUser;
+		global $wgUser, $wgUsersPagesLinksFoNamespaces;
+
+
+		// if no button defined for this namespace, return
+		if ($wgUsersPagesLinksFoNamespaces) {
+			$ns = $page->getTitle()->getNamespace();
+			if( ! isset($wgUsersPagesLinksFoNamespaces[$ns])) {
+				return true;
+			}
+		}
 
 		$pagesLinksActives = UsersPagesLinksCore::getInstance()->getUserPageLinks($wgUser, $page->getTitle());
 		$pagesLinksCounters= UsersPagesLinksCore::getInstance()->getPageCounters($page->getTitle());
 
 		$content_navigation['NetworksLinks'] = [];
 
-		// filter link to display according to the namespace
-		// TODO : filtre dynamiques
-		if ($page->getTitle()->getNamespace() == NS_GROUP) {
-			unset($pagesLinksCounters['ididit']);
-			unset($pagesLinksCounters['star']);
-		} else {
-			unset($pagesLinksCounters['member']);
-		}
 
 		foreach ($pagesLinksCounters as $type => $count) {
+			if ($wgUsersPagesLinksFoNamespaces && ! in_array($type, $wgUsersPagesLinksFoNamespaces[$ns])) {
+				//if this button not include for this namespace, skip it
+				continue;
+			}
 			$content_navigation['NetworksLinks'][$type] = [
 					'type' => $type,
 					'count' => $count,

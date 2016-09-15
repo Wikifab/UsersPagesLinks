@@ -59,3 +59,15 @@ $wgUsersPagesLinksTypes = [
 		'ididit',
 		'member'
 ];
+
+$wgUsersPagesLinksFoNamespaces = [
+		NS_MAIN  => [
+				'ididit',
+				'star'
+		]
+];
+if(defined("NS_GROUP")) {
+	$wgUsersPagesLinksFoNamespaces [NS_GROUP] = [
+		'member'
+	];
+}

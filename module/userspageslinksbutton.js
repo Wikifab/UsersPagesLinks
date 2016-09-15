@@ -1,6 +1,6 @@
 (function() {
-	
 
+	
 	function linkAdded( page, type) {
 		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").removeClass('addAction').addClass('rmAction');
 	};
