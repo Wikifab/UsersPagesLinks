@@ -20,7 +20,7 @@ $wgResourceModules['ext.userspageslinks.js'] = array(
 		),
 		'dependencies' => array(
 		),
-		'position' => 'bottom',
+		'position' => 'top',
 		'localBasePath' => __DIR__ . '/module',
 		'remoteExtPath' => 'UsersPagesLinks/module',
 );

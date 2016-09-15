@@ -1,9 +1,3 @@
-.UsersPagesLinksButton.addAction .undoActionLabel {
-	display:none;
-}
-.UsersPagesLinksButton.rmAction .doActionLabel {
-	display:none;
-}
 
 .PageNetworkLinks {
 	float:right;

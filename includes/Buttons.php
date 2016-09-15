@@ -127,7 +127,7 @@ class Buttons  {
 		$button = '<a class="UsersPagesLinksButton '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
 		$button .= '<button>';
 		$button .= '<span class=" doActionLabel"><i class="'.$faClass.'"></i> '.$doLabel.'</span>';
-		$button .= '<span class=" undoActionLabel"><i class="'.$faClass.'"></i>  '.$undoLabel.'</span>';
+		//$button .= '<span class=" undoActionLabel"><i class="'.$faClass.'"></i>  '.$undoLabel.'</span>';
 		$button .= '</button>';
 		$button .= '</a>';
 
