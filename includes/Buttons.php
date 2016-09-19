@@ -31,7 +31,9 @@ class Buttons  {
 		$pagesLinksActives = UsersPagesLinksCore::getInstance()->getUserPageLinks($wgUser, $page->getTitle());
 		$pagesLinksCounters= UsersPagesLinksCore::getInstance()->getPageCounters($page->getTitle());
 
-		$content_navigation['NetworksLinks'] = [];
+		if ( ! isset($content_navigation['NetworksLinks']) ) {
+			$content_navigation['NetworksLinks'] = [];
+		}
 
 
 		foreach ($pagesLinksCounters as $type => $count) {
@@ -40,6 +42,7 @@ class Buttons  {
 				continue;
 			}
 			$content_navigation['NetworksLinks'][$type] = [
+					'buttonType' => 'counter',
 					'type' => $type,
 					'count' => $count,
 					'redundant' => true,
