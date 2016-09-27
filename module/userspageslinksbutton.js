@@ -3,9 +3,19 @@
 	
 	function linkAdded( page, type) {
 		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").removeClass('addAction').addClass('rmAction');
+		// increment counter :
+		var counter ;
+		counter = $(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html();
+		counter = parseInt(counter) + 1;
+		$(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html(counter);
 	};
 	function linkRemoved(page, type) {
 		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").addClass('addAction').removeClass('rmAction');
+		// decrement counter :
+		var counter ;
+		counter = $(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html();
+		counter = parseInt(counter) - 1;
+		$(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html(counter);
 	};
 	
 	
