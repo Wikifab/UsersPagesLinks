@@ -221,7 +221,8 @@ class UsersPagesLinksCore  {
 
 			if (\Hooks::run( 'UsersPagesLinks-beforeCreate', [ $user, $page, $type ] )) {
 				$dbw->insert( 'userspageslinks', $rows, __METHOD__, 'IGNORE' );
-				$page->resetArticleID( false );
+				$wikiPage = new \WikiPage($page);
+				$wikiPage->doPurge();
 				return true;
 			}
 		}
@@ -255,7 +256,8 @@ class UsersPagesLinksCore  {
 				),
 				__METHOD__
 			);
-			$page->resetArticleID( false );
+			$wikiPage = new \WikiPage($page);
+			$wikiPage->doPurge();
 			return true;
 		}
 		return false;
