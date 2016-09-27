@@ -6,6 +6,7 @@ class Buttons  {
 
 	public static function onParserFirstCallInit($parser ) {
 		$parser->setFunctionHook( 'usersPagesLinksButton', 'UsersPagesLinks\\Buttons::parserButton' );
+		$parser->setFunctionHook( 'usersPagesLinksUsersList', 'UsersPagesLinks\\Buttons::parserUsersPagesLinksUsersList' );
 
 		return true;
 	}
@@ -55,6 +56,39 @@ class Buttons  {
 		return true;
 	}
 
+	private static function formatUsersList($users, $class) {
+		$out = '<div class="usersPageLinksUsers row">';
+
+		foreach ($users as $followedUser) {
+			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
+			$data = [];
+
+			$data['id'] = $followedUser->getId();
+			$data['url'] = $followedUser->getUserPage()->getLinkURL();
+			$avatar = new \wAvatar( $data['id'], 'ml' );
+			$data['avatar'] = $avatar->getAvatarURL();
+			$data['name'] = $followedUser->getRealName();
+			if ( ! $data['name']) {
+				$data['name'] = $followedUser->getName();
+			}
+
+			$out .= '<a href="'.$data['url'].'">';
+			$out .= '<div class="avatar">' . $data['avatar'] . '</div>';
+			$out .= '<span class="name">' . $data['name'] . '</span>';
+			$out .= '</a>';
+
+			$out .= '</div>';
+		}
+		$out .= '</div>';
+		return $out;
+
+	}
+
+	static function getUsersListHtml(\Title $page, $type) {
+		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type);
+		return self::formatUsersList($users, $type);
+	}
+
 
 	public static function getConnectionRequiredModal($out) {
 
@@ -83,6 +117,25 @@ class Buttons  {
 				</div>
 				</div>';
 		return $ret;
+	}
+
+	public static function parserUsersPagesLinksUsersList( \Parser $input, $type = 'undifined', $grouppage = null ) {
+
+
+		if( ! $grouppage) {
+			if (!$input->getTitle() ) {
+				trigger_error("No title founded");
+				return false;
+			}
+			$page = $input->getTitle();
+		} else {
+			$page = \Title::newFromDBkey($grouppage);
+		}
+
+		$html = self::getUsersListHtml($page, $type);
+
+
+		return array( $html, 'noparse' => true, 'isHTML' => true );
 	}
 
 

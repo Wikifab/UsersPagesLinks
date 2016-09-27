@@ -60,6 +60,40 @@ class UsersPagesLinksCore  {
 		return $results;
 	}
 
+
+	/**
+	 * returns Users linked to the given page (by type)
+	 *
+	 * @param \Title $page
+	 * @param string $type
+	 * @return string[]|boolean[]
+	 */
+	public function getPagesLinksUsers(\Title $page, $type) {
+		$list = array();
+		$dbr = wfGetDB( DB_MASTER );
+
+		$res = $dbr->select(
+			'userspageslinks',
+			array(
+				'upl_user_id',
+			), array(
+				'upl_page_namespace' => $page->getNamespace(),
+				'upl_page_title' => $page->getBaseText(),
+				'upl_type' => $type,
+			),
+			__METHOD__
+		);
+		$results = array();
+		if ( $res->numRows() > 0 ) {
+			foreach ( $res as $row ) {
+				$results[] = \User::newFromId($row->upl_user_id  );
+			}
+			$res->free();
+		}
+
+		return $results;
+	}
+
 	public function getUserCounters($user) {
 		global $wgUsersPagesLinksTypes;
 
