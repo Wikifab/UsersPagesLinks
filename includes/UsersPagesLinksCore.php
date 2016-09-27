@@ -221,6 +221,7 @@ class UsersPagesLinksCore  {
 
 			if (\Hooks::run( 'UsersPagesLinks-beforeCreate', [ $user, $page, $type ] )) {
 				$dbw->insert( 'userspageslinks', $rows, __METHOD__, 'IGNORE' );
+				$page->resetArticleID( false );
 				return true;
 			}
 		}
@@ -254,6 +255,7 @@ class UsersPagesLinksCore  {
 				),
 				__METHOD__
 			);
+			$page->resetArticleID( false );
 			return true;
 		}
 		return false;
