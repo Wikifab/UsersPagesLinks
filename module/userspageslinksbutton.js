@@ -2,31 +2,34 @@
 
 	
 	function linkAdded( page, type) {
-		unloadingMark(page, type);
-		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").removeClass('addAction').addClass('rmAction');
+		pageuri = page.replace("'", "\\\'");
+		unloadingMark(pageuri, type);
+		$(".UsersPagesLinksButton[data-page='"+pageuri+"'][data-linkstype='"+type+"']").removeClass('addAction').addClass('rmAction');
 		// increment counter :
 		var counter ;
-		counter = $(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html();
+		counter = $(".UsersPagesLinksButtonCounter[data-page='"+pageuri+"'][data-linkstype='"+type+"'] button").html();
 		counter = parseInt(counter) + 1;
-		$(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html(counter);
+		$(".UsersPagesLinksButtonCounter[data-page='"+pageuri+"'][data-linkstype='"+type+"'] button").html(counter);
 	};
 	function linkRemoved(page, type) {
-		unloadingMark(page, type);
-		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").addClass('addAction').removeClass('rmAction');
+		pageuri = page.replace("'", "\\\'");
+		unloadingMark(pageuri, type);
+		$(".UsersPagesLinksButton[data-page='"+pageuri+"'][data-linkstype='"+type+"']").addClass('addAction').removeClass('rmAction');
 		// decrement counter :
 		var counter ;
-		counter = $(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html();
+		counter = $(".UsersPagesLinksButtonCounter[data-page='"+pageuri+"'][data-linkstype='"+type+"'] button").html();
 		counter = parseInt(counter) - 1;
-		$(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html(counter);
+		$(".UsersPagesLinksButtonCounter[data-page='"+pageuri+"'][data-linkstype='"+type+"'] button").html(counter);
 	};
 
-	function unloadingMark(page, type) {
-		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"'] i.upl_icon").show();
-		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"'] i.upl_loading").hide();
+	function unloadingMark(pageuri, type) {
+		$(".UsersPagesLinksButton[data-page='"+pageuri+"'][data-linkstype='"+type+"'] i.upl_icon").show();
+		$(".UsersPagesLinksButton[data-page='"+pageuri+"'][data-linkstype='"+type+"'] i.upl_loading").hide();
 	};
 	function loadingMark(page, type) {
-		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"'] i.upl_icon").hide();
-		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"'] i.upl_loading").show();
+		pageuri = page.replace("'", "\\\'");
+		$(".UsersPagesLinksButton[data-page='"+pageuri+"'][data-linkstype='"+type+"'] i.upl_icon").hide();
+		$(".UsersPagesLinksButton[data-page='"+pageuri+"'][data-linkstype='"+type+"'] i.upl_loading").show();
 	};
 	
 	
