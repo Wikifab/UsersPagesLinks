@@ -2,6 +2,7 @@
 
 	
 	function linkAdded( page, type) {
+		unloadingMark(page, type);
 		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").removeClass('addAction').addClass('rmAction');
 		// increment counter :
 		var counter ;
@@ -10,12 +11,22 @@
 		$(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html(counter);
 	};
 	function linkRemoved(page, type) {
+		unloadingMark(page, type);
 		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"']").addClass('addAction').removeClass('rmAction');
 		// decrement counter :
 		var counter ;
 		counter = $(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html();
 		counter = parseInt(counter) - 1;
 		$(".UsersPagesLinksButtonCounter[data-page='"+page+"'][data-linkstype='"+type+"'] button").html(counter);
+	};
+
+	function unloadingMark(page, type) {
+		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"'] i.upl_icon").show();
+		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"'] i.upl_loading").hide();
+	};
+	function loadingMark(page, type) {
+		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"'] i.upl_icon").hide();
+		$(".UsersPagesLinksButton[data-page='"+page+"'][data-linkstype='"+type+"'] i.upl_loading").show();
 	};
 	
 	
@@ -50,6 +61,7 @@
 		};
 		
 		// first request to get token
+		loadingMark(page, type);
 		$.ajax({
 			type: "GET",
 			url: mw.util.wikiScript('api'),
@@ -85,6 +97,7 @@
 		};
 		
 		// first request to get token
+		loadingMark(page, type);
 		$.ajax({
 			type: "GET",
 			url: mw.util.wikiScript('api'),

@@ -182,7 +182,9 @@ class Buttons  {
 
 		$button = '<a class="UsersPagesLinksButton '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
 		$button .= '<button class=" doActionLabel">';
-		$button .= '<span class=" "><i class="'.$faClass.'"></i> '.$doLabel.'</span>';
+		$button .= '<span class=" "><i class="'.$faClass.' upl_icon"></i> ';
+		$button .= '<i class="fa fa-spinner fa-spin upl_loading" style="display:none"></i> ';
+		$button .= $doLabel.'</span>';
 		$button .= '</button>';
 		$button .= '</a>';
 
