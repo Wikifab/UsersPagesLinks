@@ -140,6 +140,7 @@ class Buttons  {
 
 
 	public static function parserButton( \Parser $input, $type = 'star', $grouppage = null ) {
+		global $wgUsersPagesLinksTypesUndoLabelsKey;
 
 		$input->getOutput()->addModules( 'ext.userspageslinks.js' );
 
@@ -163,7 +164,7 @@ class Buttons  {
 		$counter = isset($pagesLinksCounters[$type]) ? $pagesLinksCounters[$type] : 0;
 
 		$doLabel = wfMessage('userspageslinks-' . $type);
-		$undoLabel = wfMessage('userspageslinks-un' . $type);
+		$undoLabel = '';
 
 		switch($type) {
 			case 'star':
@@ -179,12 +180,31 @@ class Buttons  {
 				$faClass ='fa fa-eye';
 				break;
 		}
+		$wgUsersPagesLinksTypesUndoLabelsKey = [
+				'member' => 'userspageslinks-unmember'
+		];
+
+		$undoLabel = isset($wgUsersPagesLinksTypesUndoLabelsKey[$type]) ? wfMessage($wgUsersPagesLinksTypesUndoLabelsKey[$type]) : "";
+
+
+		if (UsersPagesLinksCore::getInstance()->hasLink($input->getUser(), $input->getTitle(), $type)){
+			$addClass='rmAction';
+			if ($undoLabel !== '') {
+				$label = $undoLabel;
+			} else {
+				$label = $doLabel;
+			}
+		} else {
+			$addClass='addAction';
+			$label = $doLabel;
+		}
 
 		$button = '<a class="UsersPagesLinksButton '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
 		$button .= '<button class=" doActionLabel">';
-		$button .= '<span class=" "><i class="'.$faClass.' upl_icon"></i> ';
+		$button .= '<span ><i class="'.$faClass.' upl_icon"></i> ';
 		$button .= '<i class="fa fa-spinner fa-spin upl_loading" style="display:none"></i> ';
-		$button .= $doLabel.'</span>';
+		$button .= '<span class="labelText" data-doLabel="' . $doLabel . '" data-undoLabel="' . $undoLabel . '">' . $label.'</span>';
+		$button .= '</span>';
 		$button .= '</button>';
 		$button .= '</a>';
 

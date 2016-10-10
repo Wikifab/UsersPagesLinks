@@ -60,6 +60,10 @@ $wgUsersPagesLinksTypes = [
 		'member'
 ];
 
+$wgUsersPagesLinksTypesUndoLabelsKey = [
+		'member' => 'userspageslinks-unmember'
+];
+
 $wgUsersPagesLinksFoNamespaces = [
 		NS_MAIN  => [
 				'ididit',

@@ -10,6 +10,12 @@
 		counter = $(".UsersPagesLinksButtonCounter[data-page='"+pageuri+"'][data-linkstype='"+type+"'] button").html();
 		counter = parseInt(counter) + 1;
 		$(".UsersPagesLinksButtonCounter[data-page='"+pageuri+"'][data-linkstype='"+type+"'] button").html(counter);
+		
+		// change label
+		var labelText = $(".UsersPagesLinksButton[data-page='"+pageuri+"'][data-linkstype='"+type+"'] .labelText");
+		if (labelText.attr("data-undolabel") && labelText.attr("data-dolabel")) {
+			labelText.html(labelText.attr("data-undolabel"));
+		}
 	};
 	function linkRemoved(page, type) {
 		pageuri = page.replace("'", "\\\'");
@@ -20,6 +26,12 @@
 		counter = $(".UsersPagesLinksButtonCounter[data-page='"+pageuri+"'][data-linkstype='"+type+"'] button").html();
 		counter = parseInt(counter) - 1;
 		$(".UsersPagesLinksButtonCounter[data-page='"+pageuri+"'][data-linkstype='"+type+"'] button").html(counter);
+
+		// change label
+		var labelText = $(".UsersPagesLinksButton[data-page='"+pageuri+"'][data-linkstype='"+type+"'] .labelText");
+		if (labelText.attr("data-undolabel") && labelText.attr("data-dolabel")) {
+			labelText.html(labelText.attr("data-dolabel"));
+		}
 	};
 
 	function unloadingMark(pageuri, type) {
