@@ -24,6 +24,7 @@ a.UsersPagesLinksButton.addAction button.doActionLabel, a.UsersPagesLinksButton.
 	background-image: -webkit-linear-gradient(#fcfcfc, #eee);
 	background-image: linear-gradient(#fcfcfc, #eee);
 	border: 1px solid #d5d5d5;
+    margin-bottom: 10px;
 }
 
 a.UsersPagesLinksButton.rmAction button.doActionLabel {
