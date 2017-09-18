@@ -13,6 +13,12 @@ class Buttons  {
 
 
 	public static function onBeforePageDisplay( $out ) {
+
+		$out->addModuleStyles(
+				array(
+						'ext.userspageslinks.css'
+				)
+		);
 		$out->addModules( 'ext.userspageslinks.js' );
 		$out->addHTML(self::getConnectionRequiredModal($out));
 	}
@@ -142,6 +148,12 @@ class Buttons  {
 	public static function parserButton( \Parser $input, $type = 'star', $grouppage = null ) {
 		global $wgUsersPagesLinksTypesUndoLabelsKey;
 
+
+		$input->getOutput()->addModuleStyles(
+				array(
+						'ext.userspageslinks.css'
+				)
+		);
 		$input->getOutput()->addModules( 'ext.userspageslinks.js' );
 
 		if( ! $grouppage) {

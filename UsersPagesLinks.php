@@ -13,9 +13,15 @@ $wgExtensionCredits['api'][] = array(
 
 );
 
+$wgResourceModules['ext.userspageslinks.css'] = array(
+		'styles' => array('userspageslinksbutton.css'),
+		'position' => 'top',
+		'localBasePath' => __DIR__ . '/module',
+		'remoteExtPath' => 'UsersPagesLinks/module',
+);
+
 $wgResourceModules['ext.userspageslinks.js'] = array(
 		'scripts' => 'userspageslinksbutton.js',
-		'styles' => array('userspageslinksbutton.css'),
 		'messages' => array(
 		),
 		'dependencies' => array(
