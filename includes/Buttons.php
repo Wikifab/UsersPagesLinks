@@ -90,7 +90,7 @@ class Buttons  {
 
 	}
 
-	static function getUsersListHtml(\Title $page, $type) {
+	public static function getUsersListHtml(\Title $page, $type) {
 		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type);
 		return self::formatUsersList($users, $type);
 	}

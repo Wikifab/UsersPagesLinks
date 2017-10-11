@@ -38,6 +38,9 @@ $wgAutoloadClasses['UsersPagesLinks\\SpecialEditUsersWatchList'] = __DIR__ . "/i
 $wgAutoloadClasses['UsersPagesLinks\\ApiUsersPagesLinks'] = __DIR__ . "/includes/ApiUsersPagesLinks.php";
 $wgAutoloadClasses['UsersPagesLinks\\Buttons'] = __DIR__ . "/includes/Buttons.php";
 
+$wgAutoloadClasses['UsersPagesLinks\\SpecialDisplayUsersList'] = __DIR__ . '/includes/SpecialDisplayUsersList.php';
+$wgSpecialPages['DisplayUsersList'] = 'UsersPagesLinks\\SpecialDisplayUsersList';
+
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'UsersPagesLinks\\UsersPagesLinks::onLoadExtensionSchemaUpdates';
 $wgHooks['ParserFirstCallInit'][] = "UsersPagesLinks\\Buttons::onParserFirstCallInit";
 $wgHooks['SkinTemplateNavigation'][] = "UsersPagesLinks\\Buttons::onSkinTemplateNavigation";
