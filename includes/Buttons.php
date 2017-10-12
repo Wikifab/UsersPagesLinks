@@ -219,16 +219,21 @@ class Buttons  {
 		$button .= '</span>';
 		$button .= '</button>';
 		$button .= '</a>';
-
 		$button .= '<a class="UsersPagesLinksButtonCounter '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
 		$button .= '<button>';
 		$button .= $counter;
 		$button .= '</button>';
 		$button .= '</a>';
+		
+		$button .= '<div class="UsersListContent"> ';
+		$button .= $usersList ;
+		$button .= '</div>';
 
 
 		return array( $button, 'noparse' => true, 'isHTML' => true );
+		
 	}
+	
 
 
 

@@ -130,5 +130,8 @@
 		}
 	});
 
-
+	$('.UsersPagesLinksButtonCounter').click(function() {
+		//document.location.href="http://wikifab.localtest.me/index.php/Special:displayUsersList?pageName=Clement&typeButton=ididit";
+		$('.UsersListContent').show();
+	});
 })();

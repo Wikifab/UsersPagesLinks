@@ -94,3 +94,7 @@ a.UsersPagesLinksButtonCounter button {
     max-width: 178px;
     overflow: hidden;
 }
+
+.UsersListContent {
+	display:none;
+}
