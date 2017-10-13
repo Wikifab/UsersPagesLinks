@@ -225,9 +225,7 @@ class Buttons  {
 		$button .= '</button>';
 		$button .= '</a>';
 		
-		$button .= '<div class="UsersListContent"> ';
-		$button .= $usersList ;
-		$button .= '</div>';
+	
 
 
 		return array( $button, 'noparse' => true, 'isHTML' => true );

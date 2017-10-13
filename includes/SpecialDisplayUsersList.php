@@ -2,6 +2,7 @@
 namespace UsersPagesLinks;
 use SpecialPage ;
 
+
 class SpecialDisplayUsersList extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'DisplayUsersList' );
@@ -15,7 +16,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 		# Get request data from, e.g.
 		$pageName = $request->getText( 'pageName' );
 		$pageTitle = \Title::newFromText($pageName);
-		
+		var_dump($pageTitle);
 		$typeButton = $request->getText( 'typeButton' );
 		
 		$usersList = Buttons::getUsersListHtml($pageTitle, $typeButton);
