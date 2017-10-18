@@ -130,5 +130,17 @@
 		}
 	});
 
-
+	$('.UsersPagesLinksButtonCounter').mouseenter(function() {
+		id = $(this).attr("data-listid");
+		$('#boutonContent'+id).show();
+		$('#hideList'+id).show();
+	});
+	
+	$('.UsersPagesLinksButtonCounter').mouseleave(function() {
+		id = $(this).attr("data-listid");
+		$('#boutonContent'+id).hide();
+		$('#hideList'+id).hide();
+	});
+	
+	
 })();

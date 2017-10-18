@@ -94,3 +94,16 @@ a.UsersPagesLinksButtonCounter button {
     max-width: 178px;
     overflow: hidden;
 }
+.buttonGoBack
+{
+	display:inline-block;
+	position:relative;
+	float:right;
+}
+.UsersListContent {
+	display:none;
+	position:relative;
+	margin-top:10%;
+	overflow:auto;
+	float:left;
+}

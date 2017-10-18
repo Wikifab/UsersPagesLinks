@@ -13,9 +13,15 @@ $wgExtensionCredits['api'][] = array(
 
 );
 
+$wgResourceModules['ext.userspageslinks.css'] = array(
+		'styles' => array('userspageslinksbutton.css'),
+		'position' => 'top',
+		'localBasePath' => __DIR__ . '/module',
+		'remoteExtPath' => 'UsersPagesLinks/module',
+);
+
 $wgResourceModules['ext.userspageslinks.js'] = array(
 		'scripts' => 'userspageslinksbutton.js',
-		'styles' => array('userspageslinksbutton.css'),
 		'messages' => array(
 		),
 		'dependencies' => array(
@@ -31,6 +37,9 @@ $wgAutoloadClasses['UsersPagesLinks\\UsersPagesLinksCore'] = __DIR__ . "/include
 $wgAutoloadClasses['UsersPagesLinks\\SpecialEditUsersWatchList'] = __DIR__ . "/includes/SpecialEditUsersWatchList.php";
 $wgAutoloadClasses['UsersPagesLinks\\ApiUsersPagesLinks'] = __DIR__ . "/includes/ApiUsersPagesLinks.php";
 $wgAutoloadClasses['UsersPagesLinks\\Buttons'] = __DIR__ . "/includes/Buttons.php";
+
+$wgAutoloadClasses['UsersPagesLinks\\SpecialDisplayUsersList'] = __DIR__ . '/includes/SpecialDisplayUsersList.php';
+$wgSpecialPages['DisplayUsersList'] = 'UsersPagesLinks\\SpecialDisplayUsersList';
 
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'UsersPagesLinks\\UsersPagesLinks::onLoadExtensionSchemaUpdates';
 $wgHooks['ParserFirstCallInit'][] = "UsersPagesLinks\\Buttons::onParserFirstCallInit";

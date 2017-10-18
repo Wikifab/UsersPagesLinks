@@ -13,6 +13,12 @@ class Buttons  {
 
 
 	public static function onBeforePageDisplay( $out ) {
+
+		$out->addModuleStyles(
+				array(
+						'ext.userspageslinks.css'
+				)
+		);
 		$out->addModules( 'ext.userspageslinks.js' );
 		$out->addHTML(self::getConnectionRequiredModal($out));
 	}
@@ -84,8 +90,9 @@ class Buttons  {
 
 	}
 
-	static function getUsersListHtml(\Title $page, $type) {
-		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type);
+	public static function getUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1) {
+		
+		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
 		return self::formatUsersList($users, $type);
 	}
 
@@ -132,7 +139,7 @@ class Buttons  {
 			$page = \Title::newFromDBkey($grouppage);
 		}
 
-		$html = self::getUsersListHtml($page, $type);
+		$html = self::getUsersListHtml($page, $type,3);
 
 
 		return array( $html, 'noparse' => true, 'isHTML' => true );
@@ -142,6 +149,12 @@ class Buttons  {
 	public static function parserButton( \Parser $input, $type = 'star', $grouppage = null ) {
 		global $wgUsersPagesLinksTypesUndoLabelsKey;
 
+
+		$input->getOutput()->addModuleStyles(
+				array(
+						'ext.userspageslinks.css'
+				)
+		);
 		$input->getOutput()->addModules( 'ext.userspageslinks.js' );
 
 		if( ! $grouppage) {
@@ -207,16 +220,19 @@ class Buttons  {
 		$button .= '</span>';
 		$button .= '</button>';
 		$button .= '</a>';
-
 		$button .= '<a class="UsersPagesLinksButtonCounter '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
 		$button .= '<button>';
 		$button .= $counter;
 		$button .= '</button>';
 		$button .= '</a>';
+		
+	
 
 
 		return array( $button, 'noparse' => true, 'isHTML' => true );
+		
 	}
+	
 
 
 
