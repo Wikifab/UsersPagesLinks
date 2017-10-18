@@ -21,7 +21,12 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$numPage = $request->getInt('numPage',1);
 		$nbrElementsByPage = 2;
 		
+		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
+		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbrElementsByPage);
 		
+		if($numPage > $nbrTotalPages OR $numPage<=1){
+			$numPage = 1;
+		}
 		// Si le nom de la page est vide ou inexistant alors on affiche le message d'erreur
 		if ($pageTitle===null || ! $pageTitle->exists()){
 			errorMessages();
@@ -99,14 +104,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 		// Les deux url suivantes sont par défaut à numPage=1
 		$urlPreviousUsers= $specialTitlePage->getFullURL($urlParamsPrevious);
 		$urlNextUsers= $specialTitlePage->getFullURL($urlParamsNext);
-		
-		if($numPage <= 0) {
-			$numPage = 1;
-		}
-		//if($numPage <$nbrTotalPages){
-// 			$numPage = 1;
-// 		}
-		
+					
 		if ($nbrTotalPages==1){
 			
 		}
