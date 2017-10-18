@@ -13,7 +13,7 @@ class UsersPagesLinksCore  {
 	/**
 	 *	return an instance of UserWatchlistCore
 	 *
-	 * @return UsersWatchListCore
+	 * @return UsersPagesLinksCore
 	 */
 	public static function getInstance() {
 		static $instance = null;
@@ -44,8 +44,8 @@ class UsersPagesLinksCore  {
 				'upl_type' => $type,
 			),
 			__METHOD__
+			
 		);
-
 		$results = array();
 		if ( $res->numRows() > 0 ) {
 			foreach ( $res as $row ) {
@@ -56,7 +56,6 @@ class UsersPagesLinksCore  {
 			}
 			$res->free();
 		}
-
 		return $results;
 	}
 
@@ -68,10 +67,22 @@ class UsersPagesLinksCore  {
 	 * @param string $type
 	 * @return string[]|boolean[]
 	 */
-	public function getPagesLinksUsers(\Title $page, $type) {
+	public function getPagesLinksUsers(\Title $page, $type,$nbreResult=20, $numPage=1) {
 		$list = array();
 		$dbr = wfGetDB( DB_MASTER );
+		
+		$numPage = intval($numPage);
+		if ($numPage<= 0) {
+			$numPage = 1;
+		}
 
+		$offsetPages = ($numPage-1) * $nbreResult;
+		
+		$option = array(
+				'OFFSET'=>$offsetPages,
+				'LIMIT'=> $nbreResult,
+		);
+		
 		$res = $dbr->select(
 			'userspageslinks',
 			array(
@@ -81,8 +92,10 @@ class UsersPagesLinksCore  {
 				'upl_page_title' => $page->getBaseText(),
 				'upl_type' => $type,
 			),
-			__METHOD__
+			__METHOD__,
+			$option
 		);
+		
 		$results = array();
 		if ( $res->numRows() > 0 ) {
 			foreach ( $res as $row ) {
@@ -90,7 +103,6 @@ class UsersPagesLinksCore  {
 			}
 			$res->free();
 		}
-
 		return $results;
 	}
 

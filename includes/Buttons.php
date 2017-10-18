@@ -90,8 +90,9 @@ class Buttons  {
 
 	}
 
-	public static function getUsersListHtml(\Title $page, $type) {
-		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type);
+	public static function getUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1) {
+		
+		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
 		return self::formatUsersList($users, $type);
 	}
 
@@ -138,7 +139,7 @@ class Buttons  {
 			$page = \Title::newFromDBkey($grouppage);
 		}
 
-		$html = self::getUsersListHtml($page, $type);
+		$html = self::getUsersListHtml($page, $type,3);
 
 
 		return array( $html, 'noparse' => true, 'isHTML' => true );

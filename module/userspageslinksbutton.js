@@ -130,16 +130,17 @@
 		}
 	});
 
-	$('.UsersPagesLinksButtonCounter').click(function() {
+	$('.UsersPagesLinksButtonCounter').mouseenter(function() {
 		id = $(this).attr("data-listid");
 		$('#boutonContent'+id).show();
 		$('#hideList'+id).show();
 	});
 	
-	$('.hideButton').click(function() {
+	$('.UsersPagesLinksButtonCounter').mouseleave(function() {
 		id = $(this).attr("data-listid");
 		$('#boutonContent'+id).hide();
 		$('#hideList'+id).hide();
-		
-	})
+	});
+	
+	
 })();

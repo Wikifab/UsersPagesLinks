@@ -94,9 +94,11 @@ a.UsersPagesLinksButtonCounter button {
     max-width: 178px;
     overflow: hidden;
 }
-.hideButton
+.buttonGoBack
 {
-	display:none;
+	display:inline-block;
+	position:relative;
+	float:right;
 }
 .UsersListContent {
 	display:none;
