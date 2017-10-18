@@ -21,6 +21,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$numPage = $request->getInt('numPage',1);
 		$nbrElementsByPage = 2;
 		
+		
 		// Si le nom de la page est vide ou inexistant alors on affiche le message d'erreur
 		if ($pageTitle===null || ! $pageTitle->exists()){
 			errorMessages();
@@ -69,15 +70,15 @@ class SpecialDisplayUsersList extends SpecialPage {
 	}
 	
 	private function displayPagination ($output, $nbreResult, $numPage, \Title $pageTitle, $typeButton ){
+		
 		$numPagePrevious = $numPage - 1;
 		$numPageNext = $numPage + 1;
 		$i=1;
 		
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbreResult);
-		if($numPage <= 0||$numPage>$nbrTotalPages) {
-			$numPage = 1;
-		}
+		
+	
 		// Paramètres de l'url quand on clic sur suivant
 		$urlParamsNext = array(
 				'pageName' => $pageTitle->getText(),
@@ -98,32 +99,54 @@ class SpecialDisplayUsersList extends SpecialPage {
 		// Les deux url suivantes sont par défaut à numPage=1
 		$urlPreviousUsers= $specialTitlePage->getFullURL($urlParamsPrevious);
 		$urlNextUsers= $specialTitlePage->getFullURL($urlParamsNext);
-		if ($numPage > 1){
-			$output->addHTML('<a href="'.$urlPreviousUsers.'"> < </a>');
+		
+		if($numPage <= 0) {
+			$numPage = 1;
 		}
+		//if($numPage <$nbrTotalPages){
+// 			$numPage = 1;
+// 		}
 		
-		for ($i = 1; $i<= $nbrTotalPages; $i++) {
-			$urlParamsChoose = array (
-					'pageName' => $pageTitle->getText(),
-					'typeButton'=> $typeButton,
-					'numPage' => $i,
-			);
-			$urlChooseUsers = $specialTitlePage->getFullURL($urlParamsChoose);
-			if ($i==$numPage){
-				$output->addHTML('<span>'.$i.'</span>');
-			}
-			else {
-				$output->addHTML('<span class=paginationSelect> <a href="'.$urlChooseUsers.'"> '.$i.'   </a> </span>');
-			}
-		}
-		
-		
+		if ($nbrTotalPages==1){
 			
-		if ($numPage < $nbrTotalPages){
-			$output->addHTML('<a href="'.$urlNextUsers.'"> > </a>');
 		}
 		
+		else {
+		
+			$output->addHTML('<div class="allPagesNumber">');
+				
+			if ($numPage > 1){
+				$output->addHTML('<a href="'.$urlPreviousUsers.'"> < </a>');
+			}
+			
+			for ($i = 1; $i<= $nbrTotalPages; $i++) {
+				
+				
+				$urlParamsChoose = array (
+						'pageName' => $pageTitle->getText(),
+						'typeButton'=> $typeButton,
+						'numPage' => $i,
+				);
+				$urlChooseUsers = $specialTitlePage->getFullURL($urlParamsChoose);
+				if ($i==$numPage){
+					$output->addHTML('<span class="pageSelect">'.$i.'</span>');
+				}
+				else {
+					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'"> '.$i.'   </a> </span>');
+				}
+			}
+			
+			
+				
+			if ($numPage < $nbrTotalPages){
+				$output->addHTML('<a href="'.$urlNextUsers.'"> > </a>');
+			}
+			
+			$output->addHTML('</div>');
+		
+		}
 	}
+	
 	
 }
 
