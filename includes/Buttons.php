@@ -63,9 +63,9 @@ class Buttons  {
 	}
 
 	private static function formatUsersList($users, $class) {
-
+		$out = "";
 		foreach ($users as $followedUser) {
-			$out = '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
+			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
 			$data = [];
 
 			$data['id'] = $followedUser->getId();
@@ -100,7 +100,9 @@ class Buttons  {
 		if ($allFollowers>3)
 		{
 			$peopleHide = $allFollowers - 3 ;
+			$output .='<div class=nbrHiddingPeople>';
 			$output .= 'Et  '.$peopleHide.' de plus ... ';
+			$output .= '</div>';
 		}
 		$output .= '</div>';
 		return $output;

@@ -19,10 +19,11 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$pageTitle = \Title::newFromText($pageName);
 		$typeButton = $request->getText( 'typeButton' );
 		$numPage = $request->getInt('numPage',1);
-		$nbrElementsByPage = 1;
+		$nbrElementsByPage = 2;
 		
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbrElementsByPage);
+		
 		
 		if($numPage > $nbrTotalPages OR $numPage<=1){
 			$numPage = 1;
@@ -59,6 +60,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 				
 			$usersList = Buttons::getUsersListHtml($pageTitle, $typeButton, $nbrElementsByPage, $numPage);
 			$output->addHTML($usersList);
+			var_dump($allFollowers[$typeButton]);
 			
 			$this->displayPagination($output,$nbrElementsByPage, $numPage, $pageTitle, $typeButton );
 			
