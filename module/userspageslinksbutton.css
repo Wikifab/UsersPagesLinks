@@ -1,6 +1,6 @@
 
 .PageNetworkLinks {
-	float:right;
+    float:right;
 }
 
 .PageNetworkLinks .btn-group {
@@ -20,10 +20,10 @@ a.UsersPagesLinksButton.addAction button.doActionLabel, a.UsersPagesLinksButton.
 }
 
 a.UsersPagesLinksButton.addAction button.doActionLabel, a.UsersPagesLinksButton.rmAction button.doActionLabel:hover {
-	background-color: #eee;
-	background-image: -webkit-linear-gradient(#fcfcfc, #eee);
-	background-image: linear-gradient(#fcfcfc, #eee);
-	border: 1px solid #d5d5d5;
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(#fcfcfc, #eee);
+    background-image: linear-gradient(#fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
 }
 
 a.UsersPagesLinksButton.rmAction button.doActionLabel {
@@ -34,34 +34,34 @@ a.UsersPagesLinksButton.rmAction button.doActionLabel {
 }
 
 a.UsersPagesLinksButton.rmAction button.doActionLabel:hover {
-	box-shadow:none;
+    box-shadow:none;
 }
 
 a.UsersPagesLinksButton.addAction button.doActionLabel:hover {
-	background-color: #ddd;
-	background-image: -webkit-linear-gradient(#eee, #ddd);
-	background-image: linear-gradient(#eee, #ddd);
-	border: 1px solid #ccc;
+    background-color: #ddd;
+    background-image: -webkit-linear-gradient(#eee, #ddd);
+    background-image: linear-gradient(#eee, #ddd);
+    border: 1px solid #ccc;
 }
 
 a.UsersPagesLinksButtonCounter button {
     padding: 3px 8px;
-	font-weight: bold;
+    font-weight: bold;
     margin-top:-1px;
     background-color: #fff;
     border: 1px solid #d5d5d5;
-	border-left: 0px;
-	-webkit-border-top-right-radius: 3px;
-	-webkit-border-bottom-right-radius: 3px;
-	-moz-border-radius-topright: 3px;
-	-moz-border-radius-bottomright: 3px;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
+    border-left: 0px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .UsersPagesLinksButton .doActionLabel .fa, .UsersPagesLinksButton .undoActionLabel .fa {
-	margin-right: 2px;
-	font-size: 93%;
+    margin-right: 2px;
+    font-size: 93%;
 }
 
 
@@ -70,7 +70,7 @@ a.UsersPagesLinksButtonCounter button {
     background: #f1f1f1;
     float: left;
     width: 100%;
-	margin-bottom: 15px;
+    margin-bottom: 15px;
     padding: 10px;
     border-radius: 3px;
 }
@@ -87,26 +87,10 @@ a.UsersPagesLinksButtonCounter button {
     float: left;
 }
 
-.UsersListContent {
-	background-color: transparent;
-	background-image: url('img/tooltip-bg.png');
-	padding-top:7px;
-	background-repeat: no-repeat;
-    background-position: 88px 0px;
-}
-
-.UsersListContent#boutonContent2 {
-    background-position: 108px 0px;
-}
-
-.UsersListContent .row {
-	margin:0px;
-}
-
 .UsersListContent .UserListcard a  {
     float: left;
     width: 100%;
-    padding: 0px 4px 0px 5px;
+    padding: 2px 5px 5px 5px;
     color: #fff;
     margin-bottom: 0px;
     background: transparent;
@@ -134,34 +118,41 @@ a.UsersPagesLinksButtonCounter button {
 
 .buttonGoBack
 {
-	display:inline-block;
-	position:relative;
-	float:right;
+    display:inline-block;
+    position:relative;
+    float:right;
 }
 .UsersListContent {
-	display:none;
+    display:none;
     position: absolute;
     z-index: 100;
     margin-top: 0px;
-	float:left;
+    float:left;
+}
+
+.UsersListContent#boutonContent1:before {
+    margin-left: 89px;
+}
+
+.UsersListContent#boutonContent2:before {
+    margin-left: 108px;
 }
 
 .UsersListContent .usersPageLinksUsers {
-    border-radius: 3px;
-    background: #333333;
+    background-image: url(/extensions/UsersPagesLinks/module/img/tooltip-bg.png);
     float: left;
     width: 100%;
     background-position: top;
     background-repeat: no-repeat;
-    padding-top: 5px;
+    margin:0;
 }
 
 .UsersListContent#boutonContent1 .usersPageLinksUsers {
-        background-position-x: -102px;
+    background-position-x: -117px;
 }
 
 .UsersListContent#boutonContent2 .usersPageLinksUsers {
-        background-position-x: -83px;
+    background-position-x: -98px;
 }
 
 .UsersListContent#boutonContent1 {
@@ -180,9 +171,12 @@ a.UsersPagesLinksButtonCounter button {
     width: 100%;
     float: left;
     margin-right: 5px;
-    padding: 0px 0px 5px 2px;
+    padding: 0px 0px 2px 5px;
 }
 
+.UsersListContent .col-md-4:first-child, .UsersListContent .col-sm-6:first-child, .UsersListContent .col-xs-12:first-child {
+    padding-top: 12px;
+}
 
 .UsersListContent .UserListcard span.name {
     float: left;
