@@ -19,7 +19,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$pageTitle = \Title::newFromText($pageName);
 		$typeButton = $request->getText( 'typeButton' );
 		$numPage = $request->getInt('numPage',1);
-		$nbrElementsByPage = 2;
+		$nbrElementsByPage = 1;
 		
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbrElementsByPage);
@@ -130,7 +130,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 					$output->addHTML('<span class="pageSelect">'.$i.'</span>');
 				}
 				else {
-					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'"> '.$i.'   </a> </span>');
+					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'">'.$i.'   </a> </span>');
 				}
 			}
 			
