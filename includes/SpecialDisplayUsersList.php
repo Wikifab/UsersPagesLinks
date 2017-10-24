@@ -24,6 +24,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbrElementsByPage);
 		
+		
 		if($numPage > $nbrTotalPages OR $numPage<=1){
 			$numPage = 1;
 		}
@@ -59,6 +60,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 				
 			$usersList = Buttons::getUsersListHtml($pageTitle, $typeButton, $nbrElementsByPage, $numPage);
 			$output->addHTML($usersList);
+			var_dump($allFollowers[$typeButton]);
 			
 			$this->displayPagination($output,$nbrElementsByPage, $numPage, $pageTitle, $typeButton );
 			
@@ -130,7 +132,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 					$output->addHTML('<span class="pageSelect">'.$i.'</span>');
 				}
 				else {
-					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'"> '.$i.'   </a> </span>');
+					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'">'.$i.'   </a> </span>');
 				}
 			}
 			

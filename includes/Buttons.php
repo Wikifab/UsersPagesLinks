@@ -63,8 +63,7 @@ class Buttons  {
 	}
 
 	private static function formatUsersList($users, $class) {
-		$out = '<div class="usersPageLinksUsers row">';
-
+		$out = "";
 		foreach ($users as $followedUser) {
 			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
 			$data = [];
@@ -85,15 +84,28 @@ class Buttons  {
 
 			$out .= '</div>';
 		}
-		$out .= '</div>';
 		return $out;
 
 	}
 
 	public static function getUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1) {
-		
 		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
 		return self::formatUsersList($users, $type);
+	}
+	
+	public static function getShortUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1, $allFollowers) {
+		$output = '<div class="usersPageLinksUsers row">';
+		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
+		$output .= self ::formatUsersList($users, $type);
+		if ($allFollowers>3)
+		{
+			$peopleHide = $allFollowers - 3 ;
+			$output .='<div class=nbrHiddingPeople>';
+			$output .= 'Et  '.$peopleHide.' de plus ... ';
+			$output .= '</div>';
+		}
+		$output .= '</div>';
+		return $output;
 	}
 
 
