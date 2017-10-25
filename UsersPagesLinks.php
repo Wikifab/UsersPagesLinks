@@ -4,7 +4,7 @@ $wgExtensionCredits['api'][] = array(
 		'path' => __FILE__,
 		'name' => 'UsersPagesLinks API',
 		'description' => 'API to add link between user and pages',
-		'version' => 1,
+		'version' => '0.1.3',
 		'author' => 'Pierre Boutet',
 
 		/* The URL to a wiki page/web page with information about the extension,
