@@ -163,6 +163,12 @@ a.UsersPagesLinksButtonCounter button {
     float:left;
 }
 
+.nbrHiddingPeople {
+    color: #fff;
+    padding: 5px 10px 7px;
+    font-size: 13px;
+}
+
 .UsersListContent#boutonContent1:before {
     margin-left: 89px;
 }
@@ -172,7 +178,7 @@ a.UsersPagesLinksButtonCounter button {
 }
 
 .UsersListContent .usersPageLinksUsers {
-    background-image: url(/extensions/UsersPagesLinks/module/img/tooltip-bg.png);
+    background-image: url('img/tooltip-bg.png');
     float: left;
     width: 100%;
     background-position: top;
