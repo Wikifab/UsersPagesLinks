@@ -120,7 +120,7 @@ a.UsersPagesLinksButtonCounter button {
     display: inline-block;
     position: relative;
     float: right;
-    margin-top: -62px;
+    margin-top: -70px;
 }
 
 .allPagesNumber {
@@ -214,7 +214,7 @@ a.UsersPagesLinksButtonCounter button {
 }
 
 .UsersListContent .col-md-4:first-child, .UsersListContent .col-sm-6:first-child, .UsersListContent .col-xs-12:first-child {
-    padding-top: 12px;
+    padding-top: 14px;
 }
 
 .UsersListContent .UserListcard span.name {

@@ -19,7 +19,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$pageTitle = \Title::newFromText($pageName);
 		$typeButton = $request->getText( 'typeButton' );
 		$numPage = $request->getInt('numPage',1);
-		$nbrElementsByPage = 2;
+		$nbrElementsByPage = 30;
 
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbrElementsByPage);
@@ -54,8 +54,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 			//On récupère l'url entière (sans paramètres autre que le nom de la page)
 			$urlPreviousPage = $pageTitle->getFullURL();
 			// Bouton qui permet de retourner à la page
-			$output->addHTML('<a href="'.$urlPreviousPage.'" class=" buttonGoBack"> <button>
-								Retour sur la page </button></a>'
+			$output->addHTML('<a href="'.$urlPreviousPage.'" class="buttonGoBack"><button class="btn btn-primary">Retour sur la page</button></a>'
 					);
 
 			$usersList = Buttons::getUsersListHtml($pageTitle, $typeButton, $nbrElementsByPage, $numPage);
@@ -128,7 +127,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 					$output->addHTML('<span class="pageSelect">'.$i.'</span>');
 				}
 				else {
-					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'">'.$i.'   </a> </span>');
+					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'">'.$i.'</a> </span>');
 				}
 			}
 
