@@ -7,12 +7,12 @@ class SpecialDisplayUsersList extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'DisplayUsersList' );
 	}
-	
+
 	function execute( $par ) {
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		$this->setHeaders();
-	
+
 		# Get request data from, e.g.
 		// Déclaration de mes variables
 		$pageName = $request->getText( 'pageName' );
@@ -20,11 +20,11 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$typeButton = $request->getText( 'typeButton' );
 		$numPage = $request->getInt('numPage',1);
 		$nbrElementsByPage = 2;
-		
+
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbrElementsByPage);
-		
-		
+
+
 		if($numPage > $nbrTotalPages OR $numPage<=1){
 			$numPage = 1;
 		}
@@ -34,17 +34,17 @@ class SpecialDisplayUsersList extends SpecialPage {
 		}
 		//Sinon on affiche toute la page spéciale
 		else {
-						
+
 			// Les différents titres des pages en fonction de quels utilisateurs on veut
 			switch($typeButton){
-				case 'star' : 
+				case 'star' :
 					$output -> setPageTitle($this -> msg("userspageslinks-special-list-title-star",$pageName));
 					break;
-				
-				case 'ididit' : 
+
+				case 'ididit' :
 					$output -> setPageTitle($this -> msg("userspageslinks-special-list-title-ididit",$pageName));
 					break;
-					
+
 				default:
 					errorMessages();
 					break;
@@ -56,36 +56,32 @@ class SpecialDisplayUsersList extends SpecialPage {
 			// Bouton qui permet de retourner à la page
 			$output->addHTML('<a href="'.$urlPreviousPage.'" class=" buttonGoBack"> <button>
 								Retour sur la page </button></a>'
-					);					
-				
+					);
+
 			$usersList = Buttons::getUsersListHtml($pageTitle, $typeButton, $nbrElementsByPage, $numPage);
 			$output->addHTML($usersList);
-			var_dump($allFollowers[$typeButton]);
-			
+
 			$this->displayPagination($output,$nbrElementsByPage, $numPage, $pageTitle, $typeButton );
-			
-			
-		}		
-		
+		}
 	}
-	
+
 	function errorMessages (){
-		
+
 		$output -> setStatusCode(404);
 		$output -> setPageTitle('Erreur 404');
 		$output -> addHTML( "Erreur 404, la page demandée n'existe pas, ou est nulle.");
 	}
-	
+
 	private function displayPagination ($output, $nbreResult, $numPage, \Title $pageTitle, $typeButton ){
-		
+
 		$numPagePrevious = $numPage - 1;
 		$numPageNext = $numPage + 1;
 		$i=1;
-		
+
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbreResult);
-		
-	
+
+
 		// Paramètres de l'url quand on clic sur suivant
 		$urlParamsNext = array(
 				'pageName' => $pageTitle->getText(),
@@ -98,30 +94,30 @@ class SpecialDisplayUsersList extends SpecialPage {
 				'typeButton' => $typeButton,
 				'numPage'=> $numPagePrevious,
 		);
-		
-		
-		
+
+
+
 		$specialTitlePage = $this->getPageTitle();
-		
+
 		// Les deux url suivantes sont par défaut à numPage=1
 		$urlPreviousUsers= $specialTitlePage->getFullURL($urlParamsPrevious);
 		$urlNextUsers= $specialTitlePage->getFullURL($urlParamsNext);
-					
+
 		if ($nbrTotalPages==1){
-			
+
 		}
-		
+
 		else {
-		
+
 			$output->addHTML('<div class="allPagesNumber">');
-				
+
 			if ($numPage > 1){
 				$output->addHTML('<a href="'.$urlPreviousUsers.'"> < </a>');
 			}
-			
+
 			for ($i = 1; $i<= $nbrTotalPages; $i++) {
-				
-				
+
+
 				$urlParamsChoose = array (
 						'pageName' => $pageTitle->getText(),
 						'typeButton'=> $typeButton,
@@ -135,18 +131,18 @@ class SpecialDisplayUsersList extends SpecialPage {
 					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'">'.$i.'   </a> </span>');
 				}
 			}
-			
-			
-				
+
+
+
 			if ($numPage < $nbrTotalPages){
 				$output->addHTML('<a href="'.$urlNextUsers.'"> > </a>');
 			}
-			
+
 			$output->addHTML('</div>');
-		
+
 		}
 	}
-	
-	
+
+
 }
 
