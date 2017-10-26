@@ -186,19 +186,19 @@ a.UsersPagesLinksButtonCounter button {
     margin:0;
 }
 
-.UsersListContent#boutonContent1 .usersPageLinksUsers {
+.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(fr) {
     background-position-x: -117px;
 }
 
-a[data-linkstype="star"] + .UsersListContent#boutonContent1 .usersPageLinksUsers {
+.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(en) {
     background-position-x: -138px;
 }
 
-.UsersListContent#boutonContent2 .usersPageLinksUsers {
+.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(fr)  {
     background-position-x: -98px;
 }
 
-a[data-linkstype="ididit"] + .UsersListContent#boutonContent2 .usersPageLinksUsers {
+.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(en)  {
     background-position-x: -124px;
 }
 
@@ -214,7 +214,7 @@ a[data-linkstype="ididit"] + .UsersListContent#boutonContent2 .usersPageLinksUse
     width: 100%;
 }
 
-a[data-linkstype="ididit"] + .UsersListContent#boutonContent2 {
+.UsersListContent#boutonContent2:lang(en)  {
     margin-left: 104px;
 }
 
