@@ -54,8 +54,11 @@ class SpecialDisplayUsersList extends SpecialPage {
 			//On récupère l'url entière (sans paramètres autre que le nom de la page)
 			$urlPreviousPage = $pageTitle->getFullURL();
 			// Bouton qui permet de retourner à la page
-			$output->addHTML('<a href="'.$urlPreviousPage.'" class="buttonGoBack"><button class="btn btn-primary">Retour sur la page</button></a>'
-					);
+			$btnGoBack = '<a href="'.$urlPreviousPage.'" class="buttonGoBack"><button class="btn btn-primary">';
+			$btnGoBack .= wfMessage("userspageslinks-special-list-button-goback");
+			$btnGoBack .= '</button></a>';
+
+			$output->addHTML($btnGoBack);
 
 			$usersList = Buttons::getUsersListHtml($pageTitle, $typeButton, $nbrElementsByPage, $numPage);
 			$output->addHTML($usersList);

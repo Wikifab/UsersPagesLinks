@@ -17,5 +17,9 @@
 	"userspageslinks-tab-favorites": "Favorites",
 	"userspageslinks-connectionmodal-content": "You doesn't have an account ? Subscribe to get the best of Wikifab !",
 	"groupspage-addtogroup-label": "add to group",
-	"groupspage-addtogroup-message": "Join a group to add pages into the group"
+	"groupspage-addtogroup-message": "Join a group to add pages into the group",
+	"userspageslinks-special-list-button-goback":"Back",
+	"userspageslinks-special-list-nbr-people-hidding":"And $1 de more...",
+	"userspageslinks-special-list-title-star":"Users who star $1",
+	"userspageslinks-special-list-title-ididit":"Users who did it $1"
 }
