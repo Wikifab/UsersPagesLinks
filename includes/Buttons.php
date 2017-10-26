@@ -92,7 +92,7 @@ class Buttons  {
 		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
 		return self::formatUsersList($users, $type);
 	}
-	
+
 	public static function getShortUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1, $allFollowers) {
 		$output = '<div class="usersPageLinksUsers row">';
 		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
@@ -100,8 +100,9 @@ class Buttons  {
 		if ($allFollowers>3)
 		{
 			$peopleHide = $allFollowers - 3 ;
+
 			$output .='<div class=nbrHiddingPeople>';
-			$output .= 'Et  '.$peopleHide.' de plus ... ';
+			$output .= wfMessage("userspageslinks-special-list-nbr-people-hidding",$peopleHide)->plain();
 			$output .= '</div>';
 		}
 		$output .= '</div>';
@@ -237,14 +238,14 @@ class Buttons  {
 		$button .= $counter;
 		$button .= '</button>';
 		$button .= '</a>';
-		
-	
+
+
 
 
 		return array( $button, 'noparse' => true, 'isHTML' => true );
-		
+
 	}
-	
+
 
 
 
