@@ -190,8 +190,16 @@ a.UsersPagesLinksButtonCounter button {
     background-position-x: -117px;
 }
 
+a[data-linkstype="star"] + .UsersListContent#boutonContent1 .usersPageLinksUsers {
+    background-position-x: -138px;
+}
+
 .UsersListContent#boutonContent2 .usersPageLinksUsers {
     background-position-x: -98px;
+}
+
+a[data-linkstype="ididit"] + .UsersListContent#boutonContent2 .usersPageLinksUsers {
+    background-position-x: -124px;
 }
 
 .UsersListContent#boutonContent1 {
@@ -204,6 +212,10 @@ a.UsersPagesLinksButtonCounter button {
     margin-left: 124px;
     max-width: 153px;
     width: 100%;
+}
+
+a[data-linkstype="ididit"] + .UsersListContent#boutonContent2 {
+    margin-left: 104px;
 }
 
 .UsersListContent .col-md-4, .UsersListContent .col-sm-6, .UsersListContent .col-xs-12 {
