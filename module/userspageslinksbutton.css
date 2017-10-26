@@ -127,6 +127,10 @@ a.UsersPagesLinksButtonCounter button {
     margin-top: -70px;
 }
 
+.buttonGoBack:hover {
+    cursor: pointer;
+}
+
 .allPagesNumber {
     text-align: center;
     float: left;
