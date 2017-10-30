@@ -19,7 +19,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$pageTitle = \Title::newFromText($pageName);
 		$typeButton = $request->getText( 'typeButton' );
 		$numPage = $request->getInt('numPage',1);
-		$nbrElementsByPage = 30;
+		$nbrElementsByPage = 1;
 
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbrElementsByPage);
@@ -97,6 +97,11 @@ class SpecialDisplayUsersList extends SpecialPage {
 				'numPage'=> $numPagePrevious,
 		);
 
+		$urlParamsChoose = array (
+				'pageName' => $pageTitle->getText(),
+				'typeButton'=> $typeButton,
+				'numPage' => 1,
+		);
 
 
 		$specialTitlePage = $this->getPageTitle();
@@ -105,46 +110,58 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$urlPreviousUsers= $specialTitlePage->getFullURL($urlParamsPrevious);
 		$urlNextUsers= $specialTitlePage->getFullURL($urlParamsNext);
 
+
 		if ($nbrTotalPages==1){
-
+			return;
 		}
 
-		else {
+		$pageLimit = 3;
+		$output->addHTML('<div class="allPagesNumber">');
 
-			$output->addHTML('<div class="allPagesNumber">');
+		//Display cursor for previous "<"
+		if ($numPage > 1){
+			$output->addHTML('<a href="'.$urlPreviousUsers.'"> < </a>');
+		}
+		if ($numPage>$pageLimit){
+			$output->addHTML('<span class="pageHidding"> ... </span>');
+		}
+		for($i = ($numPage - $pageLimit) ; $i < $numPage ; $i++) {
+			$urlParamsChoose['numPage']=$i;
+			$urlChooseUsers = $specialTitlePage->getFullURL($urlParamsChoose);
 
-			if ($numPage > 1){
-				$output->addHTML('<a href="'.$urlPreviousUsers.'"> < </a>');
+			if($i > 0) {
+				$output->addHTML('<span><a href="'.$urlChooseUsers.'" class="nbrAround">'.$i.'</a></span>');
 			}
-
-			for ($i = 1; $i<= $nbrTotalPages; $i++) {
-
-
-				$urlParamsChoose = array (
-						'pageName' => $pageTitle->getText(),
-						'typeButton'=> $typeButton,
-						'numPage' => $i,
-				);
-				$urlChooseUsers = $specialTitlePage->getFullURL($urlParamsChoose);
-				if ($i==$numPage){
-					$output->addHTML('<span class="pageSelect">'.$i.'</span>');
-				}
-				else {
-					$output->addHTML('<span class="numberPages"> <a href="'.$urlChooseUsers.'">'.$i.'</a> </span>');
-				}
-			}
-
-
-
-			if ($numPage < $nbrTotalPages){
-				$output->addHTML('<a href="'.$urlNextUsers.'"> > </a>');
-			}
-
-			$output->addHTML('</div>');
 
 		}
+		if ($i==$numPage){
+			$output->addHTML('<span class="pageSelect">'.$i.'</span>');
+		}
+		$allFollowers[$typeButton] = 0;
+		// Comment faire pour ne pas avoir à re-définir $urlChooseUsers ??
+		// Comment ajouter 3 points avant et après si il reste des pages à afficher ?
+		for($i = ($numPage + 1) ; $i <= $nbrTotalPages ; $i++) {
+			$urlParamsChoose['numPage']=$i;
+			$urlChooseUsers = $specialTitlePage->getFullURL($urlParamsChoose);
+
+			if($allFollowers[$typeButton]  < $pageLimit) {
+				$output->addHTML('<span><a href="'.$urlChooseUsers.'" class="nbrAround">'.$i.'</a></span>');
+				$allFollowers[$typeButton] ++;
+			}
+		}
+		if (($numPage+$pageLimit)<$nbrTotalPages){
+			$output->addHTML('<span class="pageHidding"> ... </span>');
+		}
+
+
+		//Display cursor for next ">"
+		if ($numPage < $nbrTotalPages){
+			$output->addHTML('<a href="'.$urlNextUsers.'"> > </a>');
+		}
+
+		$output->addHTML('</div>');
+
 	}
-
-
 }
+
 
