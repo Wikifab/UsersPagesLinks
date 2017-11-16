@@ -152,7 +152,7 @@ class Buttons  {
 			$page = \Title::newFromDBkey($grouppage);
 		}
 
-		$html = self::getUsersListHtml($page, $type,3);
+		$html = self::getUsersListHtml($page, $type,500);
 
 
 		return array( $html, 'noparse' => true, 'isHTML' => true );

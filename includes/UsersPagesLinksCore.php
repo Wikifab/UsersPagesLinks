@@ -44,7 +44,7 @@ class UsersPagesLinksCore  {
 				'upl_type' => $type,
 			),
 			__METHOD__
-			
+
 		);
 		$results = array();
 		if ( $res->numRows() > 0 ) {
@@ -70,19 +70,19 @@ class UsersPagesLinksCore  {
 	public function getPagesLinksUsers(\Title $page, $type,$nbreResult=20, $numPage=1) {
 		$list = array();
 		$dbr = wfGetDB( DB_MASTER );
-		
+
 		$numPage = intval($numPage);
 		if ($numPage<= 0) {
 			$numPage = 1;
 		}
 
 		$offsetPages = ($numPage-1) * $nbreResult;
-		
+
 		$option = array(
 				'OFFSET'=>$offsetPages,
 				'LIMIT'=> $nbreResult,
 		);
-		
+
 		$res = $dbr->select(
 			'userspageslinks',
 			array(
@@ -95,7 +95,7 @@ class UsersPagesLinksCore  {
 			__METHOD__,
 			$option
 		);
-		
+
 		$results = array();
 		if ( $res->numRows() > 0 ) {
 			foreach ( $res as $row ) {
