@@ -124,14 +124,14 @@ class Buttons  {
 				<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">'.wfMessage('userlogin').'</h4>
+				<h4 class="modal-title" id="myModalLabel">'.wfMessage('login').'</h4>
 				</div>
 				<div class="modal-body">
 				'.wfMessage('userspageslinks-connectionmodal-content').'
 				</div>
 				<div class="modal-footer">
-				<a href="'.$loginUrl.'"><button type="button" class="btn btn-default">'.wfMessage('gotaccountlink').'</button></a>
-				<a href="'.$createAccountUrl.'"><button type="button" class="btn btn-primary">'.wfMessage('nologinlink').'</button></a>
+				<a href="'.$loginUrl.'"><button type="button" class="btn btn-default">'.wfMessage('pt-login-button').'</button></a>
+				<a href="'.$createAccountUrl.'"><button type="button" class="btn btn-primary">'.wfMessage('createaccount').'</button></a>
 				</div>
 				</div>
 				</div>
