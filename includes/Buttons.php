@@ -233,7 +233,7 @@ class Buttons  {
 		$button .= '</span>';
 		$button .= '</button>';
 		$button .= '</a>';
-		$button .= '<a class="UsersPagesLinksButtonCounter '.$addClass.'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
+		$button .= '<a class="UsersPagesLinksButtonCounter '.$addClass.'" title="'.wfMessage("wf-formgroup-tab-members-tabtitle")->plain().'" data-linkstype="'.$type.'" data-page="'.$grouppage.'" >';
 		$button .= '<button>';
 		$button .= $counter;
 		$button .= '</button>';
