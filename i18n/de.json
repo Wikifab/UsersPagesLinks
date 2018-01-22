@@ -1,0 +1,25 @@
+{
+    "@metadata": {
+        "authors": [
+            "Pierre Boutet"
+        ]
+    },
+	"userspageslinks-desc": "Erweiterung zum Hinzufügen eines Verknüpfungslinks zwischen dem Benutzer und einer Seite",
+	"userspageslinks-star": "Favoriten",
+	"userspageslinks-member": "Beitreten",
+	"userspageslinks-ididit": "Ich hab es gemacht!",
+	"userspageslinks-unstar": "Aus den Favoriten entfernen",
+	"userspageslinks-unmember": "Die Gruppe verlassen",
+	"userspageslinks-unididit": "Nicht gemacht",
+	"userspageslinks-star-countlabel": "{{PLURAL:$1|Favori|Favoris}}",
+	"userspageslinks-member-countlabel": "{{PLURAL:$1|Membre|Membres}}",
+	"userspageslinks-ididit-countlabel": "{{PLURAL:$1|Maker|Makers}}",
+	"userspageslinks-tab-favorites": "Favoriten",
+	"userspageslinks-connectionmodal-content": "Noch nicht registriert? Registrieren dich, um das Beste von Wikifab zu genießen!",
+	"groupspage-addtogroup-label": "Zur Gruppe hinzufügen",
+	"groupspage-addtogroup-message": "Tritt einer Gruppe bei, um diese Seite der Gruppe hinzufügen zu können",
+	"userspageslinks-special-list-button-goback":"Zurück zur Seite",
+	"userspageslinks-special-list-nbr-people-hidding":"Und $1 weitere ...",
+	"userspageslinks-special-list-title-star":"Benutzer, denen $1 gefällt",
+	"userspageslinks-special-list-title-ididit":"Benutzer, die $1 gemacht haben"
+}
