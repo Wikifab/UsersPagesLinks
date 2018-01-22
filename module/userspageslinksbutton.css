@@ -192,16 +192,53 @@ a.UsersPagesLinksButtonCounter button {
     background-position-x: -117px;
 }
 
+.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(fr) {
+    background-position-x: -98px;
+}
+
 .UsersListContent#boutonContent1 .usersPageLinksUsers:lang(en) {
     background-position-x: -138px;
 }
 
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(fr)  {
-    background-position-x: -98px;
+.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(en) {
+    background-position-x: -124px;
 }
 
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(en)  {
-    background-position-x: -124px;
+.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(it) {
+    background-position-x: -112px;
+}
+
+.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(it) {
+    background-position-x: -122px;
+}
+
+.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(es) {
+    background-position-x: -104px;
+}
+
+.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(es) {
+    background-position-x: -102px;
+}
+
+.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(de) {
+    background-position-x: -103px;
+}
+
+.UsersListContent#boutonContent2:lang(de) {
+    margin-left: 138px;
+    max-width: 188px;
+}
+
+.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(de) {
+    background-position-x: -38px;
+}
+
+.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(pt) {
+    background-position-x: -105px;
+}
+
+.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(pt) {
+    background-position-x: -104px;
 }
 
 .UsersListContent#boutonContent1 {
