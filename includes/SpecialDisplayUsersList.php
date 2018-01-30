@@ -9,6 +9,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 	}
 
 	function execute( $par ) {
+	    global $wgUsersListNbrElementsByPage;
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 		$this->setHeaders();
@@ -19,10 +20,9 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$pageTitle = \Title::newFromText($pageName);
 		$typeButton = $request->getText( 'typeButton' );
 		$numPage = $request->getInt('numPage',1);
-		$nbrElementsByPage = 1;
 
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
-		$nbrTotalPages = ceil($allFollowers[$typeButton]/$nbrElementsByPage);
+		$nbrTotalPages = ceil($allFollowers[$typeButton]/$wgUsersListNbrElementsByPage);
 
 
 		if($numPage > $nbrTotalPages OR $numPage<=1){
@@ -60,10 +60,10 @@ class SpecialDisplayUsersList extends SpecialPage {
 
 			$output->addHTML($btnGoBack);
 
-			$usersList = Buttons::getUsersListHtml($pageTitle, $typeButton, $nbrElementsByPage, $numPage);
+			$usersList = Buttons::getUsersListHtml($pageTitle, $typeButton, $wgUsersListNbrElementsByPage, $numPage);
 			$output->addHTML($usersList);
 
-			$this->displayPagination($output,$nbrElementsByPage, $numPage, $pageTitle, $typeButton );
+			$this->displayPagination($output,$wgUsersListNbrElementsByPage, $numPage, $pageTitle, $typeButton );
 		}
 	}
 

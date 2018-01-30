@@ -19,4 +19,6 @@ class UsersPagesLinks {
 		return true;
 	}
 }
-
+if (!isset($wgUsersListNbrElementsByPage)){
+    $wgUsersListNbrElementsByPage = 24;
+}
