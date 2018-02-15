@@ -21,6 +21,10 @@ class SpecialDisplayUsersList extends SpecialPage {
 		$typeButton = $request->getText( 'typeButton' );
 		$numPage = $request->getInt('numPage',1);
 
+		if (! isset($wgUsersListNbrElementsByPage) || ! $wgUsersListNbrElementsByPage) {
+			$wgUsersListNbrElementsByPage = 24;
+		}
+
 		$allFollowers = UsersPagesLinksCore::getInstance()->getPageCounters($pageTitle);
 		$nbrTotalPages = ceil($allFollowers[$typeButton]/$wgUsersListNbrElementsByPage);
 
