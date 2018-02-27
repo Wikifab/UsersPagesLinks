@@ -66,8 +66,6 @@ a.UsersPagesLinksButtonCounter button {
     font-size: 93%;
 }
 
-
-
 .UserListcard a  {
     background: #f1f1f1;
     float: left;
@@ -152,18 +150,7 @@ a.UsersPagesLinksButtonCounter button {
     border-radius: 3px;
 }
 
-.UsersListContent {
-    display: none;
-    position: absolute;
-    z-index: 100;
-    margin-top: 0px;
-    float: left;
-    display:none;
-    position: absolute;
-    z-index: 100;
-    margin-top: 0px;
-    float:left;
-}
+
 
 .nbrHiddingPeople {
     color: #fff;
@@ -277,5 +264,27 @@ a.UsersPagesLinksButtonCounter button {
     white-space: nowrap;
     max-width: 108px;
 }
+.UsersListContent {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    margin-top: 0px;
+    float: left;
+   
+}
+.dropdownParent {
+	position:relative;
+	display:inline-block;
+}
+
+.usersPageLinksUsers, .UserListcard a{
+	display:block;
+}
+
+.dropdownParent:hover .UsersListContent {
+	display:block;
+}
+
+
 
 
