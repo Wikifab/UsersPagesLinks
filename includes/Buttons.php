@@ -87,7 +87,8 @@ class Buttons  {
 			$data['aboutUser'] = $profile_data['about'];
 
 			$pageEditProfile = \SpecialPage::getTitleFor( 'UpdateProfile' );
-			$linkUpdateProfileUser='<a href="'.$pageEditProfile->getFullURL().'"><i class="fa fa-edit"></i></a>';
+			$linkUpdateProfileUser='<span class="UpdateProfileLink"><a href="'.$pageEditProfile->getFullURL().
+			                         '"><i class="fa fa-edit"></i></a></span>';
 
 			if ( ! $data['name']) {
 				$data['name'] = $followedUser->getName();
@@ -107,13 +108,13 @@ class Buttons  {
                         <a href="'.$data['url'].'">' . $data['avatar'] . '</a>
                     </div>
                     <div class="UserListCardInfo">
-                        <a href="'.$data['url'].'">' . $data['name'] . '</a>'
-                        . $linkUpdateProfileUser .
-                        '<span class="FollowButtonUserCard">' .$data['followButton'] .'</span>
-                        <p class="UserListCardAbout">' . $data['aboutUser'] . '</p>
+                        <span class="UserListCardName"><a href="'.$data['url'].'">' . $data['name'] . '</a></span>'
+                        . $linkUpdateProfileUser
+                        .$data['followButton'] .
+                        '<p class="UserListCardAbout">' . $data['aboutUser'] . '</p>
                     </div>
-                    </div>
-                    </div>';
+                  </div>
+                </div>';
 		}
 		$out .= '</div>';
 		return $out;
@@ -150,14 +151,16 @@ class Buttons  {
 	public static function getShortUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1, $allFollowers) {
 		$output = '<div class="usersPageLinksUsers row">';
 		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
+		$pageUsersList = \SpecialPage::getTitleFor( 'DisplayUsersList' )->getFullURL();
+		var_dump($pageUsersList);
 		$output .= self::shortFormatUsersList($users, $type);
 		if ($allFollowers>3)
 		{
 			$peopleHide = $allFollowers - 3 ;
 
-			$output .='<div class=nbrHiddingPeople>';
+			$output .='<div class=nbrHiddingPeople><a href="'.$pageUsersList .'">';
 			$output .= wfMessage("userspageslinks-special-list-nbr-people-hidding",$peopleHide)->plain();
-			$output .= '</div>';
+			$output .= '</a></div>';
 		}
 		$output .= '</div>';
 		return $output;
