@@ -64,11 +64,14 @@ class Buttons  {
 		return true;
 	}
 
-	private static function formatUsersList($users, $class) {
+	public static function formatUsersList($users, $class) {
+	    $class ='';
 	    global $wgUser,$wgUserProfileDisplay;
 		$out = '<div class="row">';
 		foreach ($users as $followedUser) {
-			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
+
+			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 ">';
+			$out .= '<div class="UserListcard">';
 			$data = [];
 
 			$data['id'] = $followedUser->getId();
@@ -84,7 +87,7 @@ class Buttons  {
 			$data['aboutUser'] = $profile_data['about'];
 
 			$pageEditProfile = \SpecialPage::getTitleFor( 'UpdateProfile' );
-			$linkConnectedUser='<div class="linkToUpdateProfile"><a href="'.$pageEditProfile->getFullURL().'"><i class="fa fa-edit"></i></a></div>';
+			$linkUpdateProfileUser='<a href="'.$pageEditProfile->getFullURL().'"><i class="fa fa-edit"></i></a>';
 
 			if ( ! $data['name']) {
 				$data['name'] = $followedUser->getName();
@@ -92,7 +95,7 @@ class Buttons  {
 			//When user connected belongs to the list : don't display "follow button"
 			if ($wgUser->getId() != $data['id']){
                 $data['followButton'] = \UsersWatchButton::getHtml($data['name']);
-                $linkConnectedUser = '';
+                $linkUpdateProfileUser = '';
             }
 
             // If user didn't complete the "about" section in his profile
@@ -100,18 +103,43 @@ class Buttons  {
                 $data['aboutUser'] = wfMessage('user-about-section-empty');
             }
 
-			$out .= '<a href="'.$data['url'].'">';
-			$out .= '<div class="avatar">' . $data['avatar'] . '</div>';
-			$out .= '<span class="name">' . $data['name'] . '</span>';
-			$out .= '</a>';
-			$out .= $linkConnectedUser;
-			$out .= '<span class="aboutUser">' . $data['aboutUser'] . '</span>';
-			$out .= '<span class="FollowButtonUserCard">' .$data['followButton'] .'</span>';
-			$out .= '</div>';
+            $out .= '<div class="UserListCardAvatar">
+                        <a href="'.$data['url'].'">' . $data['avatar'] . '</a>
+                    </div>
+                    <div class="UserListCardInfo">
+                        <a href="'.$data['url'].'">' . $data['name'] . '</a>'
+                        . $linkUpdateProfileUser .
+                        '<span class="FollowButtonUserCard">' .$data['followButton'] .'</span>
+                        <p class="UserListCardAbout">' . $data['aboutUser'] . '</p>
+                    </div>
+                    </div>
+                    </div>';
 		}
 		$out .= '</div>';
 		return $out;
 
+	}
+
+	private static function shortFormatUsersList($users, $class) {
+	    $out = "";
+	    foreach ($users as $followedUser) {
+	        $out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
+	        $data = [];
+	        $data['id'] = $followedUser->getId();
+	        $data['url'] = $followedUser->getUserPage()->getLinkURL();
+	        $avatar = new \wAvatar( $data['id'], 'ml' );
+	        $data['avatar'] = $avatar->getAvatarURL();
+	        $data['name'] = $followedUser->getRealName();
+	        if ( ! $data['name']) {
+	            $data['name'] = $followedUser->getName();
+	        }
+	        $out .= '<a href="'.$data['url'].'">';
+	        $out .= '<div class="avatar">' . $data['avatar'] . '</div>';
+	        $out .= '<span class="name">' . $data['name'] . '</span>';
+	        $out .= '</a>';
+	        $out .= '</div>';
+	    }
+	    return $out;
 	}
 
 	public static function getUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1) {
@@ -122,7 +150,7 @@ class Buttons  {
 	public static function getShortUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1, $allFollowers) {
 		$output = '<div class="usersPageLinksUsers row">';
 		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
-		$output .= self ::formatUsersList($users, $type);
+		$output .= self::shortFormatUsersList($users, $type);
 		if ($allFollowers>3)
 		{
 			$peopleHide = $allFollowers - 3 ;
