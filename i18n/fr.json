@@ -21,5 +21,6 @@
 	"userspageslinks-special-list-button-goback":"Retour à la page",
 	"userspageslinks-special-list-nbr-people-hidding":"Et $1 de plus...",
 	"userspageslinks-special-list-title-star":"Utilisateurs qui aiment $1",
-	"userspageslinks-special-list-title-ididit":"Utilisateurs qui ont fait $1"
+	"userspageslinks-special-list-title-ididit":"Utilisateurs qui ont fait $1",
+	"user-about-section-empty":"L'utilisateur n'a pas rentré d'informations à son sujet"
 }

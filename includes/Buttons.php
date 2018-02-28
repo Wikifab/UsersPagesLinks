@@ -2,6 +2,8 @@
 
 namespace UsersPagesLinks;
 
+use Symfony\Component\VarDumper\VarDumper;
+
 class Buttons  {
 
 	public static function onParserFirstCallInit($parser ) {
@@ -63,7 +65,8 @@ class Buttons  {
 	}
 
 	private static function formatUsersList($users, $class) {
-		$out = "";
+	    global $wgUser,$wgUserProfileDisplay;
+		$out = '<div class="row">';
 		foreach ($users as $followedUser) {
 			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
 			$data = [];
@@ -73,17 +76,40 @@ class Buttons  {
 			$avatar = new \wAvatar( $data['id'], 'ml' );
 			$data['avatar'] = $avatar->getAvatarURL();
 			$data['name'] = $followedUser->getRealName();
+			$data['followButton'] ='';
+
+			//Get the user's 'about' section
+			$profile = new \UserProfile($followedUser->getName());
+			$profile_data = $profile->getProfile();
+			$data['aboutUser'] = $profile_data['about'];
+
+			$pageEditProfile = \SpecialPage::getTitleFor( 'UpdateProfile' );
+			$linkConnectedUser='<div class="linkToUpdateProfile"><a href="'.$pageEditProfile->getFullURL().'"><i class="fa fa-edit"></i></a></div>';
+
 			if ( ! $data['name']) {
 				$data['name'] = $followedUser->getName();
 			}
+			//When user connected belongs to the list : don't display "follow button"
+			if ($wgUser->getId() != $data['id']){
+                $data['followButton'] = \UsersWatchButton::getHtml($data['name']);
+                $linkConnectedUser = '';
+            }
+
+            // If user didn't complete the "about" section in his profile
+            if ($data['aboutUser'] ==''){
+                $data['aboutUser'] = wfMessage('user-about-section-empty');
+            }
 
 			$out .= '<a href="'.$data['url'].'">';
 			$out .= '<div class="avatar">' . $data['avatar'] . '</div>';
 			$out .= '<span class="name">' . $data['name'] . '</span>';
 			$out .= '</a>';
-
+			$out .= $linkConnectedUser;
+			$out .= '<span class="aboutUser">' . $data['aboutUser'] . '</span>';
+			$out .= '<span class="FollowButtonUserCard">' .$data['followButton'] .'</span>';
 			$out .= '</div>';
 		}
+		$out .= '</div>';
 		return $out;
 
 	}
