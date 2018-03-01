@@ -152,7 +152,6 @@ class Buttons  {
 		$output = '<div class="usersPageLinksUsers row">';
 		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
 		$pageUsersList = \SpecialPage::getTitleFor( 'DisplayUsersList' )->getFullURL('pageName='.$page .'&typeButton='.$type . '&numPage='.$numPage);
-		var_dump($pageUsersList);
 		$output .= self::shortFormatUsersList($users, $type);
 		if ($allFollowers>3)
 		{
