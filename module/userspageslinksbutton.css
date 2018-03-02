@@ -150,20 +150,10 @@ a.UsersPagesLinksButtonCounter button {
     border-radius: 3px;
 }
 
-
-
 .nbrHiddingPeople {
     color: #fff;
     padding: 5px 10px 7px;
     font-size: 13px;
-}
-
-.UsersListContent#boutonContent1:before {
-    margin-left: 89px;
-}
-
-.UsersListContent#boutonContent2:before {
-    margin-left: 108px;
 }
 
 .UsersListContent .usersPageLinksUsers {
@@ -173,75 +163,6 @@ a.UsersPagesLinksButtonCounter button {
     background-position: top;
     background-repeat: no-repeat;
     margin:0;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(fr) {
-    background-position-x: -117px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(fr) {
-    background-position-x: -98px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(en) {
-    background-position-x: -138px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(en) {
-    background-position-x: -124px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(it) {
-    background-position-x: -112px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(it) {
-    background-position-x: -122px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(es) {
-    background-position-x: -104px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(es) {
-    background-position-x: -102px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(de) {
-    background-position-x: -103px;
-}
-
-.UsersListContent#boutonContent2:lang(de) {
-    margin-left: 138px;
-    max-width: 188px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(de) {
-    background-position-x: -38px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(pt) {
-    background-position-x: -105px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(pt) {
-    background-position-x: -104px;
-}
-
-.UsersListContent#boutonContent1 {
-    margin-left: 6px;
-    max-width: 153px;
-    width: 100%;
-}
-
-.UsersListContent#boutonContent2 {
-    margin-left: 124px;
-    max-width: 153px;
-    width: 100%;
-}
-
-.UsersListContent#boutonContent2:lang(en)  {
-    margin-left: 104px;
 }
 
 .UsersListContent .col-md-4, .UsersListContent .col-sm-6, .UsersListContent .col-xs-12 {
@@ -264,12 +185,16 @@ a.UsersPagesLinksButtonCounter button {
     white-space: nowrap;
     max-width: 108px;
 }
+
 .UsersListContent {
-    display: none;
+    display: block;
     position: absolute;
-    z-index: 100;
+    z-index: 1;
     margin-top: 0px;
     float: left;
+    width: 160px;
+    position: absolute;
+    left: -70px;
    
 }
 .dropdownParent {
