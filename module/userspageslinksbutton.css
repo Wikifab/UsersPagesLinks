@@ -90,8 +90,7 @@ a.UsersPagesLinksButtonCounter button {
 .UsersListContent .UserListcard a  {
     float: left;
     width: 100%;
-    padding: 2px 5px 5px 5px;
-    color: #fff;
+    padding: 0 5px 7px 8px;
     margin-bottom: 0px;
     background: transparent;
 }
@@ -157,28 +156,31 @@ a.UsersPagesLinksButtonCounter button {
 }
 
 .UsersListContent .usersPageLinksUsers {
-    background-image: url('img/tooltip-bg.png');
     float: left;
     width: 100%;
     background-position: top;
     background-repeat: no-repeat;
     margin:0;
+    background: #fff;
+    border-radius: 4px;
 }
 
 .UsersListContent .col-md-4, .UsersListContent .col-sm-6, .UsersListContent .col-xs-12 {
     width: 100%;
     float: left;
-    margin-right: 5px;
-    padding: 0px 0px 2px 5px;
+    margin-right: 0px;
+    padding: 0px;
 }
 
-.UsersListContent .col-md-4:first-child, .UsersListContent .col-sm-6:first-child, .UsersListContent .col-xs-12:first-child {
-    padding-top: 14px;
+.UsersListContent .col-md-4:first-child a,
+.UsersListContent .col-sm-6:first-child a,
+.UsersListContent .col-xs-12:first-child a {
+    padding-top: 7px;
 }
 
 .UsersListContent .UserListcard span.name {
     float: left;
-    font-size: 13px;
+    font-size: 0.95em;
     padding: 5px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -194,9 +196,14 @@ a.UsersPagesLinksButtonCounter button {
     float: left;
     width: 160px;
     position: absolute;
-    left: -70px;
-   
+    left: -68px;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
+    padding-top: 14px;
+    background-repeat: no-repeat;
+    background-image: url('img/tooltip-triangle.png');
+    background-position: top center;
 }
+
 .dropdownParent {
 	position:relative;
 	display:inline-block;
