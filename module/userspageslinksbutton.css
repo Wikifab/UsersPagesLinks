@@ -158,11 +158,15 @@ a.UsersPagesLinksButtonCounter button {
 .UsersListContent .usersPageLinksUsers {
     float: left;
     width: 100%;
-    background-position: top;
-    background-repeat: no-repeat;
     margin:0;
-    background: #fff;
-    border-radius: 4px;
+    padding-top: 12px;
+    background-repeat: no-repeat;
+    background-image: url('img/tooltip-triangle.png');
+    background-position: top center;
+}
+
+.UsersListContent .usersPageLinksUsers:empty {
+    padding-top: 0px;
 }
 
 .UsersListContent .col-md-4, .UsersListContent .col-sm-6, .UsersListContent .col-xs-12 {
@@ -170,6 +174,25 @@ a.UsersPagesLinksButtonCounter button {
     float: left;
     margin-right: 0px;
     padding: 0px;
+    background: #fff;
+}
+
+.UsersListContent .UserListcard:first-child {
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.UsersListContent .UserListcard:last-child {
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 .UsersListContent .col-md-4:first-child a,
@@ -198,10 +221,6 @@ a.UsersPagesLinksButtonCounter button {
     position: absolute;
     left: -68px;
     filter: drop-shadow(0px -1px 5px rgba(0,0,0,0.25));
-    padding-top: 14px;
-    background-repeat: no-repeat;
-    background-image: url('img/tooltip-triangle.png');
-    background-position: top center;
 }
 
 .dropdownParent {
