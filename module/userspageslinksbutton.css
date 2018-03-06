@@ -67,12 +67,57 @@ a.UsersPagesLinksButtonCounter button {
 }
 
 .UserCard {
-    background: #f1f1f1;
+    background: #f8f8f8;
     float: left;
     width: 100%;
     margin-bottom: 15px;
     padding: 10px;
     border-radius: 3px;
+}
+
+.UserCard .UserListCardAvatar {
+    float: left;
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.UserCard a:hover {
+    text-decoration: none; 
+}
+
+.UserCard .UserListCardAvatar img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 70px;
+    height: 70px;
+    vertical-align: middle;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+}
+
+.UserCard .UserListCardAbout {
+    float: left;
+    font-size: 14px;
+    margin-bottom: 0;
+    color: #666;
+    margin-top: 5px;
+}
+
+.UserCard .UserListCardName {
+    font-size: 18px;
+    margin: 5px 0 0;
+    float: left;
+    font-weight: 600;
+}
+
+.UserCard .UserListCardInfo {
+    float: left;
+    width: calc(100% - 80px);
 }
 
 .UserListcard .avatar img {
