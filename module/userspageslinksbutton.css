@@ -105,7 +105,7 @@ a.UsersPagesLinksButtonCounter button {
 	float: right;
 }
 
-.UserCard .UsersUnWatchButton {
+.UserCard .UsersUnWatchButton .btn {
 	transition: all ease .25s;
     background-color: #f5f8fa;
     border: 1px solid #c0d2dd;
@@ -113,16 +113,16 @@ a.UsersPagesLinksButtonCounter button {
     background-image: linear-gradient(#ffffff,#f5f8fa);
 }
 
-.UserCard .UsersWatchButton {
+.UserCard .UsersWatchButton .btn {
     background: #52bad5;
     transition: all ease .25s;
 }
 
-.UserCard .UsersWatchButton:hover {
+.UserCard .UsersWatchButton .btn:hover {
     background: #2c9ab7;
 }
 
-.UserCard .UsersUnWatchButton:hover {
+.UserCard .UsersUnWatchButton .btn:hover {
     background: #dc2323;
     border: 1px solid #dc2323;
     color: #fff;
@@ -135,7 +135,7 @@ a.UsersPagesLinksButtonCounter button {
 
 .UserCard .UsersUnWatchButton .btn,
 .UserCard .UsersWatchButton .btn {
-	padding: 3px 7px;
+	padding: 2px 5px;
 	font-size: 14px;
 }
 
@@ -171,6 +171,7 @@ font-size: 15px;
 .UserListCardAbout {
     float: left;
     font-size: 14px;
+    width: 100%;
     margin-top: 5px;
     margin-bottom: 0;
     line-height: 19px;
