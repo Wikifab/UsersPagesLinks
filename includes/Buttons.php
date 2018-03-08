@@ -64,8 +64,8 @@ class Buttons  {
 		return true;
 	}
 
-	public static function formatUsersList($users, $class) {
-	    $class ='';
+	public static function formatUsersList($users, $class = '') {
+
 	    global $wgUser,$wgUserProfileDisplay;
 		$out = '<div class="row">';
 		foreach ($users as $followedUser) {
