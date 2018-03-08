@@ -64,25 +64,34 @@ class Buttons  {
 		return true;
 	}
 
+	/**
+	 * get users list fomated in html cards
+	 * Warning, result depends on the user logged (to add watch buttons)
+	 *
+	 * @param array $users array of Users
+	 * @param string $class class to add on divs
+	 * @return string
+	 */
 	public static function formatUsersList($users, $class = '') {
-
 	    global $wgUser,$wgUserProfileDisplay;
+
 		$out = '<div class="row">';
-		foreach ($users as $followedUser) {
+		foreach ($users as $user) {
 
 			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 ">';
 			$out .= '<div class="UserCard">';
 			$data = [];
 
-			$data['id'] = $followedUser->getId();
-			$data['url'] = $followedUser->getUserPage()->getLinkURL();
+			$data['id'] = $user->getId();
+			$data['url'] = $user->getUserPage()->getLinkURL();
 			$avatar = new \wAvatar( $data['id'], 'ml' );
 			$data['avatar'] = $avatar->getAvatarURL();
-			$data['name'] = $followedUser->getRealName();
+			$data['name'] = $user->getRealName();
+			$data['username'] = $user->getName();
 			$data['followButton'] ='';
 
 			//Get the user's 'about' section
-			$profile = new \UserProfile($followedUser->getName());
+			$profile = new \UserProfile($user->getName());
 			$profile_data = $profile->getProfile();
 			$data['aboutUser'] = $profile_data['about'];
 
@@ -91,11 +100,11 @@ class Buttons  {
 			                         '"><i class="fa fa-edit"></i></a></span>';
 
 			if ( ! $data['name']) {
-				$data['name'] = $followedUser->getName();
+				$data['name'] = $user->getName();
 			}
 			//When user connected belongs to the list : don't display "follow button"
-			if ($wgUser->getId() != $data['id']){
-                $data['followButton'] = \UsersWatchButton::getHtml($data['name']);
+			if ($user->getId() !=  $wgUser->getId()){
+				$data['followButton'] = \UsersWatchButton::getHtml($data['username']);
                 $linkUpdateProfileUser = '';
             }
 
@@ -123,16 +132,16 @@ class Buttons  {
 
 	private static function shortFormatUsersList($users, $class) {
 	    $out = "";
-	    foreach ($users as $followedUser) {
+	    foreach ($users as $user) {
 	        $out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
 	        $data = [];
-	        $data['id'] = $followedUser->getId();
-	        $data['url'] = $followedUser->getUserPage()->getLinkURL();
+	        $data['id'] = $user->getId();
+	        $data['url'] = $user->getUserPage()->getLinkURL();
 	        $avatar = new \wAvatar( $data['id'], 'ml' );
 	        $data['avatar'] = $avatar->getAvatarURL();
-	        $data['name'] = $followedUser->getRealName();
+	        $data['name'] = $user->getRealName();
 	        if ( ! $data['name']) {
-	            $data['name'] = $followedUser->getName();
+	            $data['name'] = $user->getName();
 	        }
 	        $out .= '<a href="'.$data['url'].'">';
 	        $out .= '<div class="avatar">' . $data['avatar'] . '</div>';
