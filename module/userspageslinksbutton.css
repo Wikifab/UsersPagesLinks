@@ -103,6 +103,7 @@ a.UsersPagesLinksButtonCounter button {
 .UserCard .UsersUnWatchButton,
 .UserCard .UsersWatchButton {
 	float: right;
+    color: #fff;
 }
 
 .UserCard .UsersUnWatchButton .btn {
@@ -180,6 +181,7 @@ font-size: 15px;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-height: 38px;
 }
 
 .UserListcard .avatar img {
