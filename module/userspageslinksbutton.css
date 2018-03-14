@@ -261,9 +261,15 @@ font-size: 15px;
 }
 
 .nbrHiddingPeople {
-    color: #fff;
     padding: 5px 10px 7px;
     font-size: 13px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: #fff;
 }
 
 .UsersListContent .usersPageLinksUsers {
