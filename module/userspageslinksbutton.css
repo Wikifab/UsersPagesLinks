@@ -121,6 +121,7 @@ a.UsersPagesLinksButtonCounter button {
 
 .UserCard .UsersWatchButton .btn:hover {
     background: #2c9ab7;
+    color:#fff;
 }
 
 .UserCard .UsersUnWatchButton .btn:hover {
@@ -167,6 +168,7 @@ font-size: 15px;
 .UserCard .UserListCardInfo {
     float: left;
     width: calc(100% - 60px);
+    height: 5em;
 }
 
 .UserListCardAbout {
