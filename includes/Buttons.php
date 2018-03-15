@@ -37,6 +37,11 @@ class Buttons  {
 			}
 		}
 
+		if (! $page->getTitle()->exists()) {
+			// do not add buttons on inexistent page
+			return true;
+		}
+
 		$pagesLinksActives = UsersPagesLinksCore::getInstance()->getUserPageLinks($wgUser, $page->getTitle());
 		$pagesLinksCounters= UsersPagesLinksCore::getInstance()->getPageCounters($page->getTitle());
 
