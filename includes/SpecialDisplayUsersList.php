@@ -34,7 +34,8 @@ class SpecialDisplayUsersList extends SpecialPage {
 		}
 		// Si le nom de la page est vide ou inexistant alors on affiche le message d'erreur
 		if ($pageTitle===null || ! $pageTitle->exists()){
-			errorMessages();
+			$this->errorMessages();
+			return;
 		}
 		//Sinon on affiche toute la page spéciale
 		else {
@@ -50,7 +51,8 @@ class SpecialDisplayUsersList extends SpecialPage {
 					break;
 
 				default:
-					errorMessages();
+					$this->errorMessages();
+					return;
 					break;
 			}
 			//La ligne suivante est équivalente à : $displayLinkPreviousPage = $this->getPageTitle();
