@@ -1,0 +1,80 @@
+{
+	"name": "UsersPagesLinks API",
+	"version": "0.2.0",
+	"author": "Pierre Boutet",
+	"description": "API to add link between user and pages",
+	"type": "api",
+	"APIModules": {
+		"userspageslinks": "UsersPagesLinks\\ApiUsersPagesLinks"
+	},
+	"callback": "UsersPagesLinks\\UsersPagesLinks::onExtension",
+	"SpecialPages": {
+		"DisplayUsersList": "UsersPagesLinks\\SpecialDisplayUsersList"
+	},
+	"MessagesDirs": {
+		"UsersPagesLinks": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"UsersPagesLinksMagicWords": "UsersPagesLinks.i18n.php"
+	},
+	"AutoloadClasses": {
+		"UsersPagesLinks\\UsersPagesLinks": "includes/UsersPagesLinks.php",
+		"UsersPagesLinks\\UsersPagesLinksCore": "includes/UsersPagesLinksCore.php",
+		"UsersPagesLinks\\SpecialEditUsersWatchList": "includes/SpecialEditUsersWatchList.php",
+		"UsersPagesLinks\\ApiUsersPagesLinks": "includes/ApiUsersPagesLinks.php",
+		"UsersPagesLinks\\Buttons": "includes/Buttons.php",
+		"UsersPagesLinks\\SpecialDisplayUsersList": "includes/SpecialDisplayUsersList.php"
+	},
+	"ResourceModules": {
+		"ext.userspageslinks.css": {
+			"styles": [
+				"userspageslinksbutton.css"
+			],
+			"position": "top"
+		},
+		"ext.userspageslinks.js": {
+			"scripts": "userspageslinksbutton.js",
+			"messages": [],
+			"dependencies": [],
+			"position": "top"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "module",
+		"remoteExtPath": "UsersPagesLinks/module"
+	},
+	"Hooks": {
+		"LoadExtensionSchemaUpdates": "UsersPagesLinks\\UsersPagesLinks::onLoadExtensionSchemaUpdates",
+		"ParserFirstCallInit": "UsersPagesLinks\\Buttons::onParserFirstCallInit",
+		"SkinTemplateNavigation": "UsersPagesLinks\\Buttons::onSkinTemplateNavigation",
+		"BeforePageDisplay": "UsersPagesLinks\\Buttons::onBeforePageDisplay"
+	},
+	"config": {
+		"UsersPagesLinksTypes": {
+			"value": [
+				"star",
+				"ididit",
+				"member"
+			]
+		},
+		"UsersPagesLinksTypesUndoLabelsKey": {
+			"value": {
+				"member": "userspageslinks-unmember"
+			}
+		},
+		"UsersPagesLinksFoNamespaces": {
+			"value": {
+				"0": [
+					"ididit",
+					"star"
+				],
+				"220": [
+					"member"
+				]
+			}
+		}
+	},
+	"manifest_version": 2
+}
