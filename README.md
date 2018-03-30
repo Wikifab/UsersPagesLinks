@@ -22,9 +22,10 @@ This extension has been tested on MediaWiki version 1.27.1
 
 Semantic Extra Special Properties
 ===============
-To be able to use 'favorite pages' and 'pages I like' as filters, two properties have been added to SESP.
+To be able to use 'favorites' and 'I dit it' as filters, two properties have been added to SESP.
 
 To use them, use these labels :
 
 Favorites
+
 I did it

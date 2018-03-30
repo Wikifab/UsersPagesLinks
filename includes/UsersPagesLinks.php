@@ -35,7 +35,7 @@ class UsersPagesLinks {
 		    'callback'  => function( $appFactory, $property, $semanticData ){
 
 		    	$usersPagesLinksCore = new UsersPagesLinksCore();
-		    	$favoritesCounter = $usersPagesLinksCore->getPageCounters( $semanticData->getSubject()->getTitle() )['star'];
+		    	$favoritesCounter = intval($usersPagesLinksCore->getPageCounters( $semanticData->getSubject()->getTitle() )['star']);
 
 		    	return new SMWDINumber($favoritesCounter);
 		    }
