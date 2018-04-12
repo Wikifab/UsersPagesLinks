@@ -45,6 +45,7 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'UsersPagesLinks\\UsersPagesLinks::on
 $wgHooks['ParserFirstCallInit'][] = "UsersPagesLinks\\Buttons::onParserFirstCallInit";
 $wgHooks['SkinTemplateNavigation'][] = "UsersPagesLinks\\Buttons::onSkinTemplateNavigation";
 $wgHooks['BeforePageDisplay'][] = "UsersPagesLinks\\Buttons::onBeforePageDisplay";
+$wgHooks['ArticleDeleteComplete'][] = "UsersPagesLinks\\UsersPagesLinks::onArticleDeleteComplete";
 
 
 $wgExtensionCredits['specialpage'][] = array(
