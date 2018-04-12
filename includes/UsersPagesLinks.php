@@ -55,5 +55,11 @@ class UsersPagesLinks {
                 return new SMWDINumber($ididitCounter);
             }
         ];
+    }
+
+	public static function onArticleDeleteComplete( &$article, \User &$user, $reason, $id, \Content $content = null, \LogEntry $logEntry ) {
+		//delete all user links to this page
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'userspageslinks', array('upl_page_id' => $id), __METHOD__);
 	}
 }
