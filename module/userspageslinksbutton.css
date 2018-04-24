@@ -66,15 +66,124 @@ a.UsersPagesLinksButtonCounter button {
     font-size: 93%;
 }
 
-
-
-.UserListcard a  {
-    background: #f1f1f1;
+.UserCard {
+    background: #f9f9f9;
     float: left;
     width: 100%;
     margin-bottom: 15px;
-    padding: 10px;
+    padding: 8px;
     border-radius: 3px;
+}
+
+.UserCard .UserListCardAvatar {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.UserCard a:hover {
+    text-decoration: none; 
+}
+
+.UserCard .UserListCardAvatar img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+}
+
+.UserCard .UsersUnWatchButton,
+.UserCard .UsersWatchButton {
+	float: right;
+    color: #fff;
+}
+
+.UserCard .UsersUnWatchButton .btn {
+	transition: all ease .25s;
+    background-color: #f5f8fa;
+    border: 1px solid #c0d2dd;
+    color: #66757f;
+    background-image: linear-gradient(#ffffff,#f5f8fa);
+}
+
+.UserCard .UsersWatchButton .btn {
+    background: #52bad5;
+    transition: all ease .25s;
+}
+
+.UserCard .UsersWatchButton .btn:hover {
+    background: #2c9ab7;
+    color:#fff;
+}
+
+.UserCard .UsersUnWatchButton .btn:hover {
+    background: #dc2323;
+    border: 1px solid #dc2323;
+    color: #fff;
+}
+
+.UserCard .UsersUnWatchButton .fa,
+.UserCard .UsersWatchButton .fa {
+	display: none;
+}
+
+.UserCard .UsersUnWatchButton .btn,
+.UserCard .UsersWatchButton .btn {
+	padding: 2px 5px;
+	font-size: 14px;
+}
+
+.UserCard .UserListCardAbout {
+    float: left;
+    font-size: 14px;
+    margin-bottom: 0;
+    color: #666;
+    margin-top: 5px;
+}
+
+.UserCard .UserListCardName {
+font-size: 15px;
+    margin: 5px 0 0 0;
+    float: left;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: calc(100% - 103px);
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+.UpdateProfileLink {
+    float: right;
+}
+
+.UserCard .UserListCardInfo {
+    float: left;
+    width: calc(100% - 60px);
+    height: 5em;
+}
+
+.UserListCardAbout {
+    float: left;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 0;
+    line-height: 19px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 38px;
 }
 
 .UserListcard .avatar img {
@@ -92,8 +201,7 @@ a.UsersPagesLinksButtonCounter button {
 .UsersListContent .UserListcard a  {
     float: left;
     width: 100%;
-    padding: 2px 5px 5px 5px;
-    color: #fff;
+    padding: 0 5px 7px 8px;
     margin-bottom: 0px;
     background: transparent;
 }
@@ -152,130 +260,97 @@ a.UsersPagesLinksButtonCounter button {
     border-radius: 3px;
 }
 
-.UsersListContent {
-    display: none;
-    position: absolute;
-    z-index: 100;
-    margin-top: 0px;
-    float: left;
-    display:none;
-    position: absolute;
-    z-index: 100;
-    margin-top: 0px;
-    float:left;
-}
-
 .nbrHiddingPeople {
-    color: #fff;
     padding: 5px 10px 7px;
     font-size: 13px;
-}
-
-.UsersListContent#boutonContent1:before {
-    margin-left: 89px;
-}
-
-.UsersListContent#boutonContent2:before {
-    margin-left: 108px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: #fff;
 }
 
 .UsersListContent .usersPageLinksUsers {
-    background-image: url('img/tooltip-bg.png');
     float: left;
     width: 100%;
-    background-position: top;
-    background-repeat: no-repeat;
     margin:0;
+    padding-top: 12px;
+    background-repeat: no-repeat;
+    background-image: url('img/tooltip-triangle.png');
+    background-position: top center;
 }
 
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(fr) {
-    background-position-x: -117px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(fr) {
-    background-position-x: -98px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(en) {
-    background-position-x: -138px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(en) {
-    background-position-x: -124px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(it) {
-    background-position-x: -112px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(it) {
-    background-position-x: -122px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(es) {
-    background-position-x: -104px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(es) {
-    background-position-x: -102px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(de) {
-    background-position-x: -103px;
-}
-
-.UsersListContent#boutonContent2:lang(de) {
-    margin-left: 138px;
-    max-width: 188px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(de) {
-    background-position-x: -38px;
-}
-
-.UsersListContent#boutonContent1 .usersPageLinksUsers:lang(pt) {
-    background-position-x: -105px;
-}
-
-.UsersListContent#boutonContent2 .usersPageLinksUsers:lang(pt) {
-    background-position-x: -104px;
-}
-
-.UsersListContent#boutonContent1 {
-    margin-left: 6px;
-    max-width: 153px;
-    width: 100%;
-}
-
-.UsersListContent#boutonContent2 {
-    margin-left: 124px;
-    max-width: 153px;
-    width: 100%;
-}
-
-.UsersListContent#boutonContent2:lang(en)  {
-    margin-left: 104px;
+.UsersListContent .usersPageLinksUsers:empty {
+    padding-top: 0px;
 }
 
 .UsersListContent .col-md-4, .UsersListContent .col-sm-6, .UsersListContent .col-xs-12 {
     width: 100%;
     float: left;
-    margin-right: 5px;
-    padding: 0px 0px 2px 5px;
+    margin-right: 0px;
+    padding: 0px;
+    background: #fff;
 }
 
-.UsersListContent .col-md-4:first-child, .UsersListContent .col-sm-6:first-child, .UsersListContent .col-xs-12:first-child {
-    padding-top: 14px;
+.UsersListContent .UserListcard:first-child {
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.UsersListContent .UserListcard:last-child {
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.UsersListContent .col-md-4:first-child a,
+.UsersListContent .col-sm-6:first-child a,
+.UsersListContent .col-xs-12:first-child a {
+    padding-top: 7px;
 }
 
 .UsersListContent .UserListcard span.name {
     float: left;
-    font-size: 13px;
+    font-size: 0.95em;
     padding: 5px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: 108px;
+    max-width: 115px;
+}
+
+.UsersListContent {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    margin-top: 0px;
+    float: left;
+    width: 160px;
+    position: absolute;
+    left: -68px;
+    filter: drop-shadow(0px -1px 5px rgba(0,0,0,0.25));
+}
+
+.dropdownParent {
+	position:relative;
+	display:inline-block;
+}
+
+.usersPageLinksUsers, .UserListcard a{
+	display:block;
+}
+
+.dropdownParent:hover .UsersListContent {
+	display:block;
 }
 
 

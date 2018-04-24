@@ -2,6 +2,8 @@
 
 namespace UsersPagesLinks;
 
+use Symfony\Component\VarDumper\VarDumper;
+
 class Buttons  {
 
 	public static function onParserFirstCallInit($parser ) {
@@ -35,6 +37,11 @@ class Buttons  {
 			}
 		}
 
+		if (! $page->getTitle()->exists()) {
+			// do not add buttons on inexistent page
+			return true;
+		}
+
 		$pagesLinksActives = UsersPagesLinksCore::getInstance()->getUserPageLinks($wgUser, $page->getTitle());
 		$pagesLinksCounters= UsersPagesLinksCore::getInstance()->getPageCounters($page->getTitle());
 
@@ -62,30 +69,92 @@ class Buttons  {
 		return true;
 	}
 
-	private static function formatUsersList($users, $class) {
-		$out = "";
-		foreach ($users as $followedUser) {
-			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
+	/**
+	 * get users list fomated in html cards
+	 * Warning, result depends on the user logged (to add watch buttons)
+	 *
+	 * @param array $users array of Users
+	 * @param string $class class to add on divs
+	 * @return string
+	 */
+	public static function formatUsersList($users, $class = '') {
+	    global $wgUser,$wgUserProfileDisplay;
+
+		$out = '<div class="row">';
+		foreach ($users as $user) {
+
+			$out .= '<div class="col-md-4 col-sm-6 col-xs-12 ">';
+			$out .= '<div class="UserCard">';
 			$data = [];
 
-			$data['id'] = $followedUser->getId();
-			$data['url'] = $followedUser->getUserPage()->getLinkURL();
+			$data['id'] = $user->getId();
+			$data['url'] = $user->getUserPage()->getLinkURL();
 			$avatar = new \wAvatar( $data['id'], 'ml' );
 			$data['avatar'] = $avatar->getAvatarURL();
-			$data['name'] = $followedUser->getRealName();
+			$data['name'] = $user->getRealName();
+			$data['username'] = $user->getName();
+			$data['followButton'] ='';
+
+			//Get the user's 'about' section
+			$profile = new \UserProfile($user->getName());
+			$profile_data = $profile->getProfile();
+			$data['aboutUser'] = $profile_data['about'];
+
+			$pageEditProfile = \SpecialPage::getTitleFor( 'UpdateProfile' );
+			$linkUpdateProfileUser='<span class="UpdateProfileLink"><a href="'.$pageEditProfile->getFullURL().
+			                         '"><i class="fa fa-edit"></i></a></span>';
+
 			if ( ! $data['name']) {
-				$data['name'] = $followedUser->getName();
+				$data['name'] = $user->getName();
 			}
+			//When user connected belongs to the list : don't display "follow button"
+			if ($user->getId() !=  $wgUser->getId()){
+				$data['followButton'] = \UsersWatchButton::getHtml($data['username']);
+                $linkUpdateProfileUser = '';
+            }
 
-			$out .= '<a href="'.$data['url'].'">';
-			$out .= '<div class="avatar">' . $data['avatar'] . '</div>';
-			$out .= '<span class="name">' . $data['name'] . '</span>';
-			$out .= '</a>';
+            // If user didn't complete the "about" section in his profile
+            if ($data['aboutUser'] ==''){
+                $data['aboutUser'] = wfMessage('user-about-section-empty');
+            }
 
-			$out .= '</div>';
+            $out .= '<div class="UserListCardAvatar">
+                        <a href="'.$data['url'].'">' . $data['avatar'] . '</a>
+                    </div>
+                    <div class="UserListCardInfo">
+                        <span class="UserListCardName"><a href="'.$data['url'].'">' . $data['name'] . '</a></span>'
+                        . $linkUpdateProfileUser
+                        .$data['followButton'] .
+                        '<p class="UserListCardAbout">' . $data['aboutUser'] . '</p>
+                    </div>
+                  </div>
+                </div>';
 		}
+		$out .= '</div>';
 		return $out;
 
+	}
+
+	private static function shortFormatUsersList($users, $class) {
+	    $out = "";
+	    foreach ($users as $user) {
+	        $out .= '<div class="col-md-4 col-sm-6 col-xs-12 UserListcard">';
+	        $data = [];
+	        $data['id'] = $user->getId();
+	        $data['url'] = $user->getUserPage()->getLinkURL();
+	        $avatar = new \wAvatar( $data['id'], 'ml' );
+	        $data['avatar'] = $avatar->getAvatarURL();
+	        $data['name'] = $user->getRealName();
+	        if ( ! $data['name']) {
+	            $data['name'] = $user->getName();
+	        }
+	        $out .= '<a href="'.$data['url'].'">';
+	        $out .= '<div class="avatar">' . $data['avatar'] . '</div>';
+	        $out .= '<span class="name">' . $data['name'] . '</span>';
+	        $out .= '</a>';
+	        $out .= '</div>';
+	    }
+	    return $out;
 	}
 
 	public static function getUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1) {
@@ -96,14 +165,15 @@ class Buttons  {
 	public static function getShortUsersListHtml(\Title $page, $type, $nbreResult=0, $numPage=1, $allFollowers) {
 		$output = '<div class="usersPageLinksUsers row">';
 		$users = UsersPagesLinksCore::getInstance()->getPagesLinksUsers($page, $type, $nbreResult, $numPage);
-		$output .= self ::formatUsersList($users, $type);
+		$pageUsersList = \SpecialPage::getTitleFor( 'DisplayUsersList' )->getFullURL('pageName='.$page .'&typeButton='.$type . '&numPage='.$numPage);
+		$output .= self::shortFormatUsersList($users, $type);
 		if ($allFollowers>3)
 		{
 			$peopleHide = $allFollowers - 3 ;
 
-			$output .='<div class=nbrHiddingPeople>';
+			$output .='<div class=nbrHiddingPeople><a href="'.$pageUsersList .'">';
 			$output .= wfMessage("userspageslinks-special-list-nbr-people-hidding",$peopleHide)->plain();
-			$output .= '</div>';
+			$output .= '</a></div>';
 		}
 		$output .= '</div>';
 		return $output;
