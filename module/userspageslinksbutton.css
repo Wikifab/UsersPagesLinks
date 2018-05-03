@@ -184,6 +184,7 @@ font-size: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     min-height: 38px;
+    max-height: 2em;
 }
 
 .UserListcard .avatar img {
