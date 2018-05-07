@@ -292,7 +292,7 @@ font-size: 15px;
     float: left;
     margin-right: 0px;
     padding: 0px;
-    background: #fff;
+    background: #30373b;
 }
 
 .UsersListContent .UserListcard:first-child {
@@ -327,6 +327,7 @@ font-size: 15px;
     overflow: hidden;
     white-space: nowrap;
     max-width: 115px;
+    color: #fff;
 }
 
 .UsersListContent {
