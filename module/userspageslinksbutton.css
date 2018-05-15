@@ -120,7 +120,7 @@ a.UsersPagesLinksButtonCounter button {
 }
 
 .UserCard .UsersWatchButton .btn:hover {
-    background: #2c9ab7;
+    background: var(--main-hover-color);
     color:#fff;
 }
 
