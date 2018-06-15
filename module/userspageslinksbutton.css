@@ -120,7 +120,7 @@ a.UsersPagesLinksButtonCounter button {
 }
 
 .UserCard .UsersWatchButton .btn:hover {
-    background: #2c9ab7;
+    background: var(--main-hover-color);
     color:#fff;
 }
 
@@ -184,6 +184,7 @@ font-size: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     min-height: 38px;
+    max-height: 2em;
 }
 
 .UserListcard .avatar img {
@@ -291,7 +292,7 @@ font-size: 15px;
     float: left;
     margin-right: 0px;
     padding: 0px;
-    background: #fff;
+    background: #30373b;
 }
 
 .UsersListContent .UserListcard:first-child {
@@ -326,6 +327,7 @@ font-size: 15px;
     overflow: hidden;
     white-space: nowrap;
     max-width: 115px;
+    color: #fff;
 }
 
 .UsersListContent {

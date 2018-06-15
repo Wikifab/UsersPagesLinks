@@ -118,13 +118,13 @@ class Buttons  {
                 $data['aboutUser'] = wfMessage('user-about-section-empty');
             }
 
-            $out .= '<div class="UserListCardAvatar">
-                        <a href="'.$data['url'].'">' . $data['avatar'] . '</a>
-                    </div>
-                    <div class="UserListCardInfo">
-                        <span class="UserListCardName"><a href="'.$data['url'].'">' . $data['name'] . '</a></span>'
+            $out .= '<div class="UserListCardAvatar">'
+                        . '<a href="'.$data['url'].'">' . $data['avatar'] . '</a>'
+                   		. '</div>'
+                   		. '<div class="UserListCardInfo">'
+                   		. '<span class="UserListCardName"><a href="'.$data['url'].'">' . $data['name'] . '</a></span>'
                         . $linkUpdateProfileUser
-                        .$data['followButton'] .
+                        . $data['followButton'] .
                         '<p class="UserListCardAbout">' . $data['aboutUser'] . '</p>
                     </div>
                   </div>
