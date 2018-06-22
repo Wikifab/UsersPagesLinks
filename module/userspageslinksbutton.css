@@ -4,7 +4,8 @@
 }
 
 .PageNetworkLinks .btn-group {
-    vertical-align:top;
+    vertical-align: top;
+    margin-left: 5px;
 }
 
 a.UsersPagesLinksButton.addAction button.doActionLabel, a.UsersPagesLinksButton.rmAction button.doActionLabel {
