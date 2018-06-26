@@ -49,7 +49,8 @@
 		"LoadExtensionSchemaUpdates": "UsersPagesLinks\\UsersPagesLinks::onLoadExtensionSchemaUpdates",
 		"ParserFirstCallInit": "UsersPagesLinks\\Buttons::onParserFirstCallInit",
 		"SkinTemplateNavigation": "UsersPagesLinks\\Buttons::onSkinTemplateNavigation",
-		"BeforePageDisplay": "UsersPagesLinks\\Buttons::onBeforePageDisplay"
+		"BeforePageDisplay": "UsersPagesLinks\\Buttons::onBeforePageDisplay",
+		"ArticleDeleteComplete": "UsersPagesLinks\\UsersPagesLinks::onArticleDeleteComplete"
 	},
 	"config": {
 		"UsersPagesLinksTypes": {
