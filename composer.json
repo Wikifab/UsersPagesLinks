@@ -1,5 +1,5 @@
 {
-    "name": "wikifab/UsersPagesLinks",
+    "name": "wikifab/users-pages-links",
     "description": "This is a mediawiki extension to add links between a user and a page ( like counter, 'I did it' counter, favorites,...)'",
     "type": "mediawiki-extension",
     "require": {
