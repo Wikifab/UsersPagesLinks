@@ -16,8 +16,6 @@
 	"userspageslinks-ididit-countlabel": "{{PLURAL:$1|Creador|Creadores}}",
 	"userspageslinks-tab-favorites": "Favoritos",
 	"userspageslinks-connectionmodal-content": "¿Todavía no se ha registrado? Crea una cuenta para disfrutar de todas las características de la plataforma!",
-	"groupspage-addtogroup-label": "Agregar al grupo",
-	"groupspage-addtogroup-message": "Únete a un grupo para poder agregar esta página al grupo",
 	"userspageslinks-special-list-button-goback":"Regresar a la página",
 	"userspageslinks-special-list-nbr-people-hidding":"Y $1 más...",
 	"userspageslinks-special-list-title-star":"Usuarios a los que les gusta $1",
