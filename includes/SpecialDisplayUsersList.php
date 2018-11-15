@@ -74,7 +74,7 @@ class SpecialDisplayUsersList extends SpecialPage {
 	}
 
 	function errorMessages (){
-
+		$output = $this->getOutput();
 		$output -> setStatusCode(404);
 		$output -> setPageTitle('Erreur 404');
 		$output -> addHTML( "Erreur 404, la page demandée n'existe pas, ou est nulle.");
