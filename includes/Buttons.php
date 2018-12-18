@@ -125,7 +125,7 @@ class Buttons  {
                    		. '<span class="UserListCardName"><a href="'.$data['url'].'">' . $data['name'] . '</a></span>'
                         . $linkUpdateProfileUser
                         . $data['followButton'] .
-                        '<p class="UserListCardAbout">' . $data['aboutUser'] . '</p>
+                        '<div class="UserListCardAbout">' . $data['aboutUser'] . '</div>
                     </div>
                   </div>
                 </div>';
