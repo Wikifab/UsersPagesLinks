@@ -116,12 +116,10 @@ a.UsersPagesLinksButtonCounter button {
 }
 
 .UserCard .UsersWatchButton .btn {
-    background: var(--main-btn-color);
     transition: all ease .25s;
 }
 
 .UserCard .UsersWatchButton .btn:hover {
-    background: var(--main-hover-color);
     color:#fff;
 }
 
